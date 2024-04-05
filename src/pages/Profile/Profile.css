@@ -1,0 +1,11 @@
+.profile-design {
+    height: 80vh;
+    width: 100vw;
+
+    background-color: black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

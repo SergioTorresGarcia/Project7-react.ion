@@ -1,0 +1,84 @@
+.header-design {
+    height: 12vh;
+    width: 100vw;
+
+    background: rgb(122, 9, 238);
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
+.search-bar {
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+}
+
+
+.logo>img {
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigator-design {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.out-design {
+    color: white;
+    font-weight: bold;
+
+    margin: 1em;
+
+    transition: 0.3s;
+}
+
+.out-design:hover {
+    transition: 0.3s;
+    color: black;
+    cursor: pointer;
+}
+
+.search {
+    height: 6vh;
+    width: 20em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.01em dashed whitesmoke;
+    margin: 1em;
+    padding-left: 1em;
+    border-radius: 0.5em;
+    /* background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(134, 134, 134, 1) 77%, rgba(221, 17, 204, 1) 100%); */
+    background-color: black;
+    color: whitesmoke;
+}
+
+.on-the-right {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0.5em;
+    width: 15em;
+
+}
