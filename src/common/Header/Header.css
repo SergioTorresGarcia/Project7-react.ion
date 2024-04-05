@@ -43,13 +43,24 @@
 
 }
 
-.out-design {
-    color: white;
+.out-design span {
+    color: black;
     font-weight: bold;
-
+    display: flex;
+    flex-direction: row;
+    width: 4em;
     margin: 1em;
 
     transition: 0.3s;
+
+}
+
+.out-design span:hover {
+
+    transition: 0.3s;
+    color: white;
+    cursor: pointer;
+
 }
 
 .out-design:hover {

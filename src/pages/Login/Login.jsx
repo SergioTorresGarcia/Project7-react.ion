@@ -36,45 +36,14 @@ export const Login = () => {
 
 
     const userData = useSelector((state) => state.user.userData);
-    // // const datosUser = JSON.parse(localStorage.getItem("passport"));
-    // const navigate = useNavigate();
-
-    // const [msg, setMsg] = useState("");
-    // const [tokenStorage, setTokenStorage] = useState(userData?.token);
-
-    // const [credenciales, setCredenciales] = useState({
-    //     email: "",
-    //     password: "",
-    // });
 
     const [credentialsError, setCredentialsError] = useState({
         emailError: "",
         passwordError: "",
     });
 
-    // const [msgError, setMsgError] = useState("");
-
-    // useEffect(() => {
-    //     if (tokenStorage) {
-    //         navigate("/");
-    //     }
-    // }, [tokenStorage]);
-
-    // //checks input once we click outside
-    // const checkError = (e) => {
-    //     const error = validate(e.target.name, e.target.value);
-
-    //     setCredencialesError((prevState) => ({
-    //         ...prevState,
-    //         [e.target.name + "Error"]: error,
-    //     }));
-    // };
-
     // //Instancia de Redux para escritura
     const dispatch = useDispatch();
-
-
-
 
     // main function
     const loginMe = async () => {
@@ -95,12 +64,11 @@ export const Login = () => {
                 //saving passport in RDX
                 dispatch(login({ credentials: passport }));
 
-                setMsg(`${decodificado.userName}, welcome back!`);
+                setMsg(`${decodificado.username}, welcome back!`);
 
-                // setTimeout(() => {
-                navigate("/")
-                // }, 1500)
-                console.log(3, decodificado.username);
+                setTimeout(() => {
+                    navigate("/")
+                }, 1500)
             }
         } catch (error) {
             setMsgError(error.message);
