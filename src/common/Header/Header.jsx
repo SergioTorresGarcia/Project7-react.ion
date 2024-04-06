@@ -45,27 +45,29 @@ export const Header = (() => {
 
             {/* TEXT ON THE RIGHT */}
             <div className="on-the-right">
-                {/* SEARCH-BAR */}
 
-                <CInput
-
-                    type="text"
-                    name="criteria"
-                    value={criteria || ""}
-                    changeEmit={searchHandler}
-                />
 
 
                 {rdxUser?.credentials?.token ? (
-                    // PROFILE & LOGOUT
-                    <div className="navigator-design">
-                        <CLink path="/profile" title={rdxUser?.credentials?.user?.username} />
-                        <div className="out-design"
-                            onClick={() => dispatch(logout({ credentials: "" }))}
-                        >
-                            <span>log out</span>
+                    <>
+                        {/* SEARCH-BAR */}
+                        < CInput
+
+                            type="text"
+                            name="criteria"
+                            value={criteria || ""}
+                            changeEmit={searchHandler}
+                        />
+                        {/* PROFILE & LOGOUT */}
+                        <div className="navigator-design">
+                            <CLink path="/profile" title={rdxUser?.credentials?.user?.username} />
+                            <div className="out-design"
+                                onClick={() => dispatch(logout({ credentials: "" }))}
+                            >
+                                <span>log out</span>
+                            </div>
                         </div>
-                    </div>
+                    </>
                 ) : (
                     // LOGIN & REGISTER
                     <div className="navigator-design">

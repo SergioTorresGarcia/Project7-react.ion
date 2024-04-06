@@ -9,3 +9,25 @@
     justify-content: center;
     align-items: center;
 }
+
+
+.white-color {
+    color: whitesmoke;
+}
+
+.greenish {
+    color: #B5EFDC;
+}
+
+.inputDesign {
+    margin: 2.5em;
+}
+
+.loader {
+    height: 2.5em;
+}
+
+.border-edit {
+    border: 0.05em solid #B5EFDC;
+    background-color: rgb(30, 30, 30);
+}

@@ -27,11 +27,12 @@
     justify-content: center;
     align-items: center;
     margin: 0.5em;
+
 }
 
 
 .logo>img {
-    height: 8vh;
+    height: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,7 +76,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.01em dashed whitesmoke;
+    border: 0.01em dashed #B5EFDC;
     margin: 1em;
     padding-left: 1em;
     border-radius: 0.5em;
@@ -91,5 +92,9 @@
     align-items: center;
     margin: 0.5em;
     width: 15em;
+}
+
+.on-the-right input {
+    background-color: #B5EFDC;
 
 }
