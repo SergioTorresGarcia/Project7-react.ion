@@ -68,7 +68,7 @@ export const Login = () => {
 
                 setTimeout(() => {
                     navigate("/")
-                }, 1500)
+                }, 2000)
             }
         } catch (error) {
             setMsgError(error.message);
@@ -113,7 +113,9 @@ export const Login = () => {
                     </div>
                 </div>
             ) : (
-                <div>{msg}</div>
+                <div className="behind-btns">
+                    <div>{msg}</div>
+                </div>
             )}
         </div>
     )

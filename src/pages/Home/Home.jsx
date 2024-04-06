@@ -12,5 +12,9 @@ export const Home = () => {
         console.log(searchRdx);
     }, [searchRdx]);
 
-    return <div className="home-design">soy home</div>;
+    return (
+        <div className="home-design">
+            <img className="gif" src="src/img/REACT.ION.gif" alt="gif logo" />
+        </div>
+    )
 };

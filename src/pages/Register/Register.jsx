@@ -1,15 +1,11 @@
 
 import "./Register.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CInput } from "../../common/CInput/CInput";
 import { RegisterUser } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
 import { validate } from "../../utils/functions";
 
-
-//Redux
-import { login } from "../../app/slices/userSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -52,8 +48,6 @@ export const Register = () => {
         }));
     };
 
-    // const userData = useSelector((state) => state.user.userData);
-
     // main function
     const registerMe = async () => {
         try {
@@ -70,7 +64,7 @@ export const Register = () => {
 
             setTimeout(() => {
                 navigate("/login");
-            }, 1500);
+            }, 3000);
         } catch (error) {
             setMsgError(error.message);
         }
@@ -125,7 +119,9 @@ export const Register = () => {
 
                 </div>
             ) : (
-                <div>{msg}</div>
+                <div className="behind-btns">
+                    <div>{msg}</div>
+                </div>
             )}
         </div>
     )
