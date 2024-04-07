@@ -205,41 +205,40 @@ export const Admin = () => {
     return (
         <>
             <div className="admin-design">
-                <div>
+                <div className="div">
                     {/* USERS */}
-                    <div className="div"> USERS: there are a total of {users.length} entries</div>
+                    <div> USERS: there are a total of {users.length} entries</div>
                     <table className="table">
                         <thead className="thead">
-                            <tr className="tr th">
-                                <th className="pos">#</th>
-                                <th className="username">Username</th>
-                                <th className="name">Name</th>
-                                <th className="bio">Bio</th>
-                                <th className="following">Following</th>
-                                <th className="followedBy">Followers</th>
-                                <th className="email">e-mail address</th>
-                                <th className="createdAt">Register since</th>
-                                <th className="role">Role</th>
-                            </tr>
+                            <div className="tr">
+                                <th className="table01">#</th>
+                                <th className="table02">Username</th>
+                                <th className="table03">Name</th>
+                                <th className="table04">Bio</th>
+                                <th className="table05">Following</th>
+                                <th className="table06">Followers</th>
+                                <th className="table07">e-mail address</th>
+                                <th className="table08">Register since</th>
+                                <th className="table09">Actions</th>
+
+                            </div>
                         </thead>
                         <tbody className="tbody">
                             {currentUsers.map((user, index) => (
                                 // {users.data.map((user, index) => (
-                                <div className={`div ${rowNumbers1[index] % 2 == 0 ? "grayBg" : ""}`} key={user.id}>
-                                    <td className="pos">{rowNumbers1[index]}</td>
-                                    <td className="username">{user.username}</td>
-                                    <td className="name">{user.name}</td>
-                                    <td className="bio">{user.bio}</td>
-                                    <td className="following">{user.following}</td>
-                                    <td className="followedBy">{user.followedBy}</td>
-                                    <td className="email">{user.email}</td>
-                                    <td className="createdAt">{dayjs(user.createdAt).format("YYYY-MM-DD")}</td>
-                                    <td className="role">{user.role.roleName}</td>
+                                <div className={`tr ${rowNumbers1[index] % 2 == 0 ? "grayBg" : ""}`} key={user.id}>
+                                    <td className="table01">{rowNumbers1[index]}</td>
+                                    <td className="table02">{user.username}</td>
+                                    <td className="table03">{user.profile.name ? user.profile.name : ""}</td>
+                                    <td className="table04">"{user.profile.bio ? user.profile.bio : ""}"</td>
+                                    <td className="table05">{user.following != "" ? user.following : "none"}</td>
+                                    <td className="table06">{user.followedBy != "" ? user.followedBy : "none"}</td>
+                                    <td className="table07">{user.email}</td>
+                                    <td className="table08">{dayjs(user.createdAt).format("YYYY-MM-DD")}</td>
 
-                                    <td className="buttons">
+                                    <td className="table09">
                                         <button className="del" onClick={() => deleteUser(user.id)}>delete</button>
-                                    </td>
-                                    <td className="">
+
                                         <button className="edit" onClick={() => editUser(user.id)}>edit</button>
                                     </td>
                                 </div>

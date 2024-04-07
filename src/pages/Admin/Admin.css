@@ -1,3 +1,4 @@
+/* //////////////////////////////////////////////////////////// general /// */
 .admin-design {
     height: 80vh;
     width: 100vw;
@@ -7,27 +8,59 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 
-/* //////////////////////////////////////////////////////////// general /// */
-.adminDesign {
-    min-height: 86.5vh;
-    width: 100vw;
+.table01 {
+    width: auto;
+    margin-left: 1em;
+}
+
+.table05,
+.table06 {
+    width: 5em;
+}
+
+.table02,
+.table03 {
+    width: 8em
+}
+
+.table04,
+.table08 {
+    width: 10em;
+}
+
+.table04,
+.table07 {
+    width: 15em;
+}
+
+.table09 {
+    width: 10em;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+/* //////////////////////////////////////////////////////////// table parts /// */
+.div {
+    padding: 0.5em;
+    color: white;
+    width: 100vw;
+
+    background: #f520e3;
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    justify-content: flex-start;
 
 }
 
-
-/* //////////////////////////////////////////////////////////// table parts /// */
 .table {
     width: 90vw;
     height: fit-content;
-    border: 0.075em solid teal;
+    border: 0.075em solid blueviolet;
     border-radius: 0.5em;
-    background-color: #e9e3e3;
+    background-color: rgb(227, 127, 255);
     margin: 1em;
     padding: 1em 1em 0 1em;
     display: flex;
@@ -37,136 +70,42 @@
 .thead {
     display: flex;
     justify-content: flex-start;
-    color: teal;
-    border: 0.075em solid teal;
-    background-color: rgba(0, 128, 128, 0.197);
+    align-items: center;
+    color: blueviolet;
+    border: 0.075em solid blueviolet;
+    background-color: rgb(234, 156, 255);
     height: 3em;
     margin-bottom: 1em;
+
 }
 
 .tbody {
-    background-color: rgba(0, 128, 128, 0.197);
-    border: 0.075em solid teal;
+    background-color: rgb(234, 156, 255);
+    border: 0.075em solid blueviolet;
+    margin-bottom: 1em;
+    color: black
 }
 
 .tr,
-.div {
-    color: black;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-
-}
-
-.th {
-    color: teal;
+.th,
+.td {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
 .grayBg {
-    background-color: gainsboro;
+    background-color: rgb(253, 188, 254);
 }
 
-
-
-/* //////////////////////////////////////////////////////////// fields /// */
-.pos,
-.name,
-.birth,
-.email,
-.role,
-.del,
-.title,
-.description,
-.image,
-.id,
-.service,
-.user,
-.userid,
-.day,
-.time {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.pos {
-    width: 3vw;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 1em;
-}
-
-.name,
-.title,
-.img {
-    width: 20vw;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.name {
-    width: 8vw;
-}
-
-.userid {
-    width: 10vw;
-}
-
-.img {
-    margin-left: 5em;
-}
-
-.role,
-.user,
-.day {
-    width: 25vw;
-}
-
-.name,
-.id,
-.image,
-.time {
-    width: 13em;
-}
-
-
-.email,
-.birth,
-.role,
-.description {
-    display: flex;
-    justify-content: center;
-}
-
-.email,
-.birth,
-.image {
-    width: 18vw;
-}
-
-.description,
-.service {
-    width: 30vw;
-}
-
-/* //////////////////////////////////////////////////////////// buttons /// */
-.buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.2em;
-}
 
 .del {
     width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: darkred;
+    color: #B5EFDC;
+    background-color: #f520e3;
 }
 
 .edit {
@@ -174,8 +113,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: teal;
+    background-color: #B5EFDC;
+    color: #ce53ff;
 }
+
+/* //////////////////////////////////////////////////////////// buttons /// */
+/* .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2em;
+}
+
+
 
 .image {
     height: 7em;
@@ -189,4 +139,4 @@
     justify-content: flex-end;
     align-items: flex-end;
     color: teal;
-}
+} */
