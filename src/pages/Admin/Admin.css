@@ -1,0 +1,192 @@
+.admin-design {
+    height: 80vh;
+    width: 100vw;
+
+    background-color: #B5EFDC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* //////////////////////////////////////////////////////////// general /// */
+.adminDesign {
+    min-height: 86.5vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+/* //////////////////////////////////////////////////////////// table parts /// */
+.table {
+    width: 90vw;
+    height: fit-content;
+    border: 0.075em solid teal;
+    border-radius: 0.5em;
+    background-color: #e9e3e3;
+    margin: 1em;
+    padding: 1em 1em 0 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.thead {
+    display: flex;
+    justify-content: flex-start;
+    color: teal;
+    border: 0.075em solid teal;
+    background-color: rgba(0, 128, 128, 0.197);
+    height: 3em;
+    margin-bottom: 1em;
+}
+
+.tbody {
+    background-color: rgba(0, 128, 128, 0.197);
+    border: 0.075em solid teal;
+}
+
+.tr,
+.div {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.th {
+    color: teal;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.grayBg {
+    background-color: gainsboro;
+}
+
+
+
+/* //////////////////////////////////////////////////////////// fields /// */
+.pos,
+.name,
+.birth,
+.email,
+.role,
+.del,
+.title,
+.description,
+.image,
+.id,
+.service,
+.user,
+.userid,
+.day,
+.time {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pos {
+    width: 3vw;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1em;
+}
+
+.name,
+.title,
+.img {
+    width: 20vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.name {
+    width: 8vw;
+}
+
+.userid {
+    width: 10vw;
+}
+
+.img {
+    margin-left: 5em;
+}
+
+.role,
+.user,
+.day {
+    width: 25vw;
+}
+
+.name,
+.id,
+.image,
+.time {
+    width: 13em;
+}
+
+
+.email,
+.birth,
+.role,
+.description {
+    display: flex;
+    justify-content: center;
+}
+
+.email,
+.birth,
+.image {
+    width: 18vw;
+}
+
+.description,
+.service {
+    width: 30vw;
+}
+
+/* //////////////////////////////////////////////////////////// buttons /// */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2em;
+}
+
+.del {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: darkred;
+}
+
+.edit {
+    width: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: teal;
+}
+
+.image {
+    height: 7em;
+    width: 15vw;
+    transform: scale(0.15);
+}
+
+.del {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: teal;
+}

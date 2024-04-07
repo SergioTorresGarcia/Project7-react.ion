@@ -19,7 +19,8 @@ export const Header = (() => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log((rdxUser, " credentials passport "));
+        console.log((rdxUser.credentials, " credentials passport "));
+        console.log((userData, " userData "));
     }, [rdxUser]);
 
     const [criteria, setCriteria] = useState("");
@@ -50,6 +51,12 @@ export const Header = (() => {
 
                 {rdxUser?.credentials?.token ? (
                     <>
+                        <div>
+                            {(rdxUser?.credentials?.user?.roleName === "super_admin") &&
+                                <div className="navigator-design">
+                                    <CLink path="/admin" title="ADMIN" />
+                                </div>}
+                        </div>
                         {/* SEARCH-BAR */}
                         < CInput
 

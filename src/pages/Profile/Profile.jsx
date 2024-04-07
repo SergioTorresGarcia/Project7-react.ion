@@ -52,6 +52,7 @@ export const Profile = () => {
             navigate("/")
         }
     }, [rdxUser])
+    console.log(rdxUser, "rdxUser");
 
     const [tokenStorage, setTokenStorage] = useState(rdxUser.credentials.token);
     useEffect(() => {
@@ -97,11 +98,10 @@ export const Profile = () => {
 
 
             setMsg("Profile updated successfully, please log yourself in");
-            navigate("/login");
             setTimeout(() => {
                 dispatch(profile({ credentials: userData }));
-
             }, 100);
+            navigate("/login");
 
         } catch (error) {
             throw new Error('Updating data failed: ' + error.message);
