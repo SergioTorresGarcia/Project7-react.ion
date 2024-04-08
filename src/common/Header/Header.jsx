@@ -19,7 +19,8 @@ export const Header = (() => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log((rdxUser, " credentials passport "));
+        console.log((rdxUser.credentials, " credentials passport "));
+        console.log((userData, " userData "));
     }, [rdxUser]);
 
     const [criteria, setCriteria] = useState("");
@@ -45,27 +46,35 @@ export const Header = (() => {
 
             {/* TEXT ON THE RIGHT */}
             <div className="on-the-right">
-                {/* SEARCH-BAR */}
 
-                <CInput
-
-                    type="text"
-                    name="criteria"
-                    value={criteria || ""}
-                    changeEmit={searchHandler}
-                />
 
 
                 {rdxUser?.credentials?.token ? (
-                    // PROFILE & LOGOUT
-                    <div className="navigator-design">
-                        <CLink path="/profile" title={rdxUser?.credentials?.user?.username} />
-                        <div className="out-design"
-                            onClick={() => dispatch(logout({ credentials: "" }))}
-                        >
-                            <span>log out</span>
+                    <>
+                        <div>
+                            {(rdxUser?.credentials?.user?.roleName === "super_admin") &&
+                                <div className="navigator-design">
+                                    <CLink path="/admin" title="ADMIN" />
+                                </div>}
                         </div>
-                    </div>
+                        {/* SEARCH-BAR */}
+                        < CInput
+
+                            type="text"
+                            name="criteria"
+                            value={criteria || ""}
+                            changeEmit={searchHandler}
+                        />
+                        {/* PROFILE & LOGOUT */}
+                        <div className="navigator-design">
+                            <CLink path="/profile" title={rdxUser?.credentials?.user?.username} />
+                            <div className="out-design"
+                                onClick={() => dispatch(logout({ credentials: "" }))}
+                            >
+                                <span>log out</span>
+                            </div>
+                        </div>
+                    </>
                 ) : (
                     // LOGIN & REGISTER
                     <div className="navigator-design">

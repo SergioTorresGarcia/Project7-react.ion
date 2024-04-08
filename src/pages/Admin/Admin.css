@@ -1,0 +1,154 @@
+/* //////////////////////////////////////////////////////////// general /// */
+.admin-design {
+    height: 80vh;
+    width: 100vw;
+
+    background-color: #B5EFDC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.title {
+    padding-bottom: 1em;
+}
+
+.table01 {
+    width: 2em;
+    margin-left: 1em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
+}
+
+.table03 {
+    width: 8em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
+}
+
+.table04,
+.table05,
+.table06,
+.table08 {
+    width: 10em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
+}
+
+.table02,
+.table04,
+.table07 {
+    width: 20em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
+}
+
+.table09 {
+    width: 10em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.div {
+    padding: 0.5em;
+    color: white;
+    width: 100vw;
+
+    background: #f520e3;
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    justify-content: space-around;
+
+}
+
+/* //////////////////////////////////////////////////////////// table parts /// */
+
+.table {
+    width: 95vw;
+    height: fit-content;
+    border: 0.075em solid blueviolet;
+    border-radius: 0.5em;
+    background-color: rgb(227, 127, 255);
+    margin: auto;
+    padding: 1em 1em 0 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.thead {
+    /* display: flex;
+    justify-content: flex-start;
+    align-items: center; */
+    color: blueviolet;
+    border: 0.075em solid blueviolet;
+    background-color: rgb(234, 156, 255);
+    height: 3em;
+    margin-bottom: 1em;
+
+}
+
+.tbody {
+    background-color: rgb(234, 156, 255);
+    border: 0.075em solid blueviolet;
+    margin-bottom: 1em;
+    color: black
+}
+
+.tr,
+.th,
+.td {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.grayBg {
+    background-color: rgb(253, 188, 254);
+}
+
+
+.del {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #B5EFDC;
+    background-color: #f520e3;
+
+}
+
+.edit {
+    width: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #B5EFDC;
+    color: #ce53ff;
+
+}
+
+/* //////////////////////////////////////////////////////////// buttons /// */
+/* .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2em;
+}
+
+
+
+.image {
+    height: 7em;
+    width: 15vw;
+    transform: scale(0.15);
+}
+
+.del {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: teal;
+} */

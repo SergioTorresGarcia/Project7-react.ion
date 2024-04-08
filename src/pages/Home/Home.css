@@ -3,7 +3,6 @@
     width: 100vw;
 
     background-color: #B5EFDC;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,5 +11,4 @@
 
 .gif {
     height: 80vh;
-    /* overflow: hidden; */
 }

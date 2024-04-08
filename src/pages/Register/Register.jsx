@@ -11,17 +11,21 @@ export const Register = () => {
     const navigate = useNavigate();
 
     const [user, setUser] = useState({
-        // first_name: "",
-        // last_name: "",
         username: "",
-        // birth_date: "",
+        // name: "",
+        // bio: "",
+        // following: [],
+        // followedBy: [],
         email: "",
         password: "",
     });
 
     const [userError, setUserError] = useState({
         usernameError: "",
-        // dateError: "",
+        // nameError: "",
+        // bioError: "",
+        // followingError: [],
+        // followedByError: [],
         emailError: "",
         passwordError: "",
     });
@@ -58,8 +62,6 @@ export const Register = () => {
             }
 
             const fetched = await RegisterUser(user);
-
-            console.log(fetched);
             setMsg("Register completed, please log yourself in");
 
             setTimeout(() => {

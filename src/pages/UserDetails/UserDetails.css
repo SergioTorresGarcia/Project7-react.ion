@@ -1,4 +1,4 @@
-.profile-design {
+.user-detail-design {
     height: 80vh;
     width: 100vw;
 
@@ -8,6 +8,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.behind {
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    width: 100vw;
+    height: 2em;
 }
 
 

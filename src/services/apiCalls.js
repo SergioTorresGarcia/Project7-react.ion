@@ -52,3 +52,130 @@ export const LoginUser = async (credenciales) => {
         throw new Error('Login failed: ' + error.message);
     }
 };
+
+export const GetProfile = async (token) => {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+
+    try {
+        const response = await fetch(`${root}users/profile`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+        return data;
+    } catch (error) {
+        throw new Error('Get profile failed: ' + error.message);
+    }
+};
+
+export const UpdateProfile = async (token, user) => {
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(user)
+    };
+    try {
+        const response = await fetch(`${root}users/profile`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const responseData = await response.json();
+        if (!responseData.success) {
+            throw new Error(responseData.message);
+        }
+        return responseData;
+    } catch (error) {
+        throw new Error('Update profile failed: ' + error.message);
+    }
+};
+
+export const GetUsers = async (token) => {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+
+    try {
+        const response = await fetch(`${root}users`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+        return data;
+    } catch (error) {
+        throw new Error('Get users failed: ' + error.message);
+    }
+};
+
+
+//delete button in admin view
+export const DeleteUser = async (token, _id) => {
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    }
+    try {
+        const response = await fetch(`${root}users/${_id}`, options)
+        console.log("response", response);
+        if (!response.ok) {
+            throw new Error('Failed to delete user: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log("data", data);
+        if (!data.success) {
+            throw new Error('Failed to delete user: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete user failed: ' + error.message);
+    }
+}
+//edit button in admin view
+export const UpdateUser = async (token, _id, newData) => {
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(newData)
+    }
+    try {
+        const response = await fetch(`${root}users/${_id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to update user: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to update user: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Update user failed: ' + error.message);
+    }
+}

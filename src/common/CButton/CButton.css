@@ -1,0 +1,19 @@
+.cButtonDesign {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #B5EFDC;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 2em;
+}
+
+.cButtonDesign:hover {
+    color: whitesmoke;
+    transform: scale(1.2);
+    transition: 0.2s;
+}
