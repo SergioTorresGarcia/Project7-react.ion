@@ -1,6 +1,6 @@
 import "./Admin.css";
 import { searchData } from "../../app/slices/searchSlice";
-import { userData } from "../../app/slices/userSlice";
+import { userData, deleteUserById } from "../../app/slices/userSlice";
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +37,6 @@ export const Admin = () => {
             navigate("/")
         }
     }, [tokenStorage])
-    console.log(rdxUser, "rdxUser");
 
     const navigate = useNavigate();
     const [loadedData, setLoadedData] = useState(false);
@@ -136,11 +135,17 @@ export const Admin = () => {
 
 
     //button deletes each user by id
-    const deleteUser = async (id) => {
+    const deleteUser = async (_id) => {
+        // console.log("_id dato 0: ", id);
         try {
-            await DeleteUser(tokenStorage, id);
-            setUsers(prevUsers => prevUsers.filter(user => user.id !== id));
+            console.log("id ok 1: ", _id);
+            await DeleteUser(tokenStorage, _id);
+
+            setUsers(prevUsers => prevUsers.filter(user => user._id !== _id));
+            dispatch(deleteUserById(_id));
         } catch (error) {
+            console.log("id not 2:", _id);
+            console.log(users);
             throw new Error('Failed to delete user: ', error.message);
         }
     };
@@ -185,11 +190,6 @@ export const Admin = () => {
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
-
-    console.log(1, "users: ", users);
-    console.log(2, "users.data: ", users.data);
-    console.log(3, "userData: ", userData);
-    console.log(4, "tokenStorage: ", tokenStorage);
     // const indexOfLastService = currentPageS * servicesPerPage;
     // const indexOfFirstService = indexOfLastService - servicesPerPage;
     // const currentServices = services.slice(indexOfFirstService, indexOfLastService);
@@ -207,10 +207,10 @@ export const Admin = () => {
             <div className="admin-design">
                 <div className="div">
                     {/* USERS */}
-                    <div> USERS: there are a total of {users.length} entries</div>
+                    <div className="title"> USERS: there are a total of {users.length} entries</div>
                     <table className="table">
                         <thead className="thead">
-                            <div className="tr">
+                            <tr className="tr">
                                 <th className="table01">#</th>
                                 <th className="table02">Username</th>
                                 <th className="table03">Name</th>
@@ -221,12 +221,11 @@ export const Admin = () => {
                                 <th className="table08">Register since</th>
                                 <th className="table09">Actions</th>
 
-                            </div>
+                            </tr>
                         </thead>
                         <tbody className="tbody">
                             {currentUsers.map((user, index) => (
-                                // {users.data.map((user, index) => (
-                                <div className={`tr ${rowNumbers1[index] % 2 == 0 ? "grayBg" : ""}`} key={user.id}>
+                                <tr className={`tr ${rowNumbers1[index] % 2 == 0 ? "grayBg" : ""}`} key={user._id}>
                                     <td className="table01">{rowNumbers1[index]}</td>
                                     <td className="table02">{user.username}</td>
                                     <td className="table03">{user.profile.name ? user.profile.name : ""}</td>
@@ -237,11 +236,11 @@ export const Admin = () => {
                                     <td className="table08">{dayjs(user.createdAt).format("YYYY-MM-DD")}</td>
 
                                     <td className="table09">
-                                        <button className="del" onClick={() => deleteUser(user.id)}>delete</button>
+                                        <button className="del" onClick={() => deleteUser(user._id)}>delete</button>
 
-                                        <button className="edit" onClick={() => editUser(user.id)}>edit</button>
+                                        <button className="edit" onClick={() => editUser(user._id)}>edit</button>
                                     </td>
-                                </div>
+                                </tr>
                             ))}
                         </tbody>
                     </table>

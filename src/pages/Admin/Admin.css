@@ -11,29 +11,43 @@
 
 }
 
+.title {
+    padding-bottom: 1em;
+}
+
 .table01 {
-    width: auto;
+    width: 2em;
     margin-left: 1em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
 }
 
 .table05,
 .table06 {
     width: 5em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
 }
 
 .table02,
 .table03 {
-    width: 8em
+    width: 8em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
 }
 
 .table04,
 .table08 {
     width: 10em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
 }
 
 .table04,
 .table07 {
     width: 15em;
+    border-right: 0.05em solid #ce53ff;
+    padding-right: 0.25em;
 }
 
 .table09 {
@@ -43,7 +57,6 @@
     justify-content: space-around;
 }
 
-/* //////////////////////////////////////////////////////////// table parts /// */
 .div {
     padding: 0.5em;
     color: white;
@@ -51,26 +64,28 @@
 
     background: #f520e3;
     background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
-    justify-content: flex-start;
+    justify-content: space-around;
 
 }
 
+/* //////////////////////////////////////////////////////////// table parts /// */
+
 .table {
-    width: 90vw;
+    width: 95vw;
     height: fit-content;
     border: 0.075em solid blueviolet;
     border-radius: 0.5em;
     background-color: rgb(227, 127, 255);
-    margin: 1em;
+    margin: auto;
     padding: 1em 1em 0 1em;
     display: flex;
     flex-direction: column;
 }
 
 .thead {
-    display: flex;
+    /* display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: center; */
     color: blueviolet;
     border: 0.075em solid blueviolet;
     background-color: rgb(234, 156, 255);
@@ -106,6 +121,7 @@
     align-items: center;
     color: #B5EFDC;
     background-color: #f520e3;
+
 }
 
 .edit {
@@ -115,6 +131,7 @@
     align-items: center;
     background-color: #B5EFDC;
     color: #ce53ff;
+
 }
 
 /* //////////////////////////////////////////////////////////// buttons /// */

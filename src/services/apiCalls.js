@@ -61,20 +61,16 @@ export const GetProfile = async (token) => {
             "Authorization": `Bearer ${token}`
         }
     };
-    console.log("token in apiCalls:", token);
 
     try {
         const response = await fetch(`${root}users/profile`, options);
         if (!response.ok) {
-            console.log("response failed:", response);
             throw new Error('Network response was not ok');
         }
-        console.log("response", response);
         const data = await response.json();
         if (!data.success) {
             throw new Error(data.message);
         }
-        console.log("data (res.json() )", data);
         return data;
     } catch (error) {
         throw new Error('Get profile failed: ' + error.message);
@@ -113,27 +109,23 @@ export const GetUsers = async (token) => {
             "Authorization": `Bearer ${token}`
         }
     };
-    console.log("token in apiCalls:", token);
 
     try {
         const response = await fetch(`${root}users`, options);
         if (!response.ok) {
-            console.log("response failed:", response);
             throw new Error('Network response was not ok');
         }
-        console.log(111, "response", response);
         const data = await response.json();
         if (!data.success) {
             throw new Error(data.message);
         }
-        console.log(22222, "data (res.json() )", data);
         return data;
     } catch (error) {
         throw new Error('Get users failed: ' + error.message);
     }
 };
 
-export const DeleteUser = async (token, id) => {
+export const DeleteUser = async (token, _id) => {
     const options = {
         method: "DELETE",
         headers: {
@@ -142,7 +134,8 @@ export const DeleteUser = async (token, id) => {
         }
     }
     try {
-        const response = await fetch(`${root}users/${id}`, options)
+        const response = await fetch(`${root}users/${_id}`, options)
+        console.log("response", response);
         if (!response.ok) {
             throw new Error('Failed to delete user: ' + response.statusText);
         }

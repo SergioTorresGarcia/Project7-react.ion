@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        credentials: {}
+        credentials: {},
+        deletedUserId: null
     },
     reducers: {
         login: (state, action) => {
@@ -24,12 +25,17 @@ export const userSlice = createSlice({
                 ...state,
                 ...action.payload
             }
+        },
+        deleteUserById: (state, action) => {
+            console.log("hello : ", action.payload);
+            let userIndex = state.indexOf(action.payload)
+            state.splice(userIndex, 1)
         }
     }
 
 });
 
-export const { login, logout, profile } = userSlice.actions;
+export const { login, logout, profile, deleteUserById } = userSlice.actions;
 
 export const userData = (state) => state.user;
 
