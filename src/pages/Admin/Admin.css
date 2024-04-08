@@ -22,14 +22,6 @@
     padding-right: 0.25em;
 }
 
-.table05,
-.table06 {
-    width: 5em;
-    border-right: 0.05em solid #ce53ff;
-    padding-right: 0.25em;
-}
-
-.table02,
 .table03 {
     width: 8em;
     border-right: 0.05em solid #ce53ff;
@@ -37,15 +29,18 @@
 }
 
 .table04,
+.table05,
+.table06,
 .table08 {
     width: 10em;
     border-right: 0.05em solid #ce53ff;
     padding-right: 0.25em;
 }
 
+.table02,
 .table04,
 .table07 {
-    width: 15em;
+    width: 20em;
     border-right: 0.05em solid #ce53ff;
     padding-right: 0.25em;
 }

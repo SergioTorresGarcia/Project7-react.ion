@@ -1,0 +1,39 @@
+.user-detail-design {
+    height: 80vh;
+    width: 100vw;
+
+    background-color: black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.behind {
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    width: 100vw;
+    height: 2em;
+}
+
+
+.white-color {
+    color: whitesmoke;
+}
+
+.greenish {
+    color: #B5EFDC;
+}
+
+.inputDesign {
+    margin: 2.5em;
+}
+
+.loader {
+    height: 2.5em;
+}
+
+.border-edit {
+    border: 0.05em solid #B5EFDC;
+    background-color: rgb(30, 30, 30);
+}

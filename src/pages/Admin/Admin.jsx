@@ -1,10 +1,10 @@
 import "./Admin.css";
 import { searchData } from "../../app/slices/searchSlice";
-import { userData, deleteUserById } from "../../app/slices/userSlice";
+import { userData, deleteUserById, updateUserById } from "../../app/slices/userSlice";
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GetUsers, DeleteUser } from "../../services/apiCalls"; //, GetServices, DeleteService, GetAllAppointments, DeleteAppointment
+import { GetUsers, DeleteUser, UpdateUser } from "../../services/apiCalls"; //, GetServices, DeleteService, GetAllAppointments, DeleteAppointment
 import dayjs from "dayjs";
 import { Pagination } from "../../common/Pagination/Pagination";
 
@@ -136,16 +136,12 @@ export const Admin = () => {
 
     //button deletes each user by id
     const deleteUser = async (_id) => {
-        // console.log("_id dato 0: ", id);
         try {
-            console.log("id ok 1: ", _id);
             await DeleteUser(tokenStorage, _id);
 
             setUsers(prevUsers => prevUsers.filter(user => user._id !== _id));
             dispatch(deleteUserById(_id));
         } catch (error) {
-            console.log("id not 2:", _id);
-            console.log(users);
             throw new Error('Failed to delete user: ', error.message);
         }
     };
@@ -169,6 +165,15 @@ export const Admin = () => {
     //         throw new Error('Failed to delete appointment: ', error.message);
     //     }
     // };
+
+    const editUser = async (_id) => {
+        try {
+            const responseDetails = await UpdateUser(tokenStorage, _id);
+            navigate(`/userDetails/${_id}`)
+        } catch (error) {
+            throw new Error('Cannot see user details:' + error.message);
+        }
+    }
 
     const pageCountUsers = Math.ceil(users.length / numUserDisplay); // Calculate total number of pages for users
     // const pageCountServices = Math.ceil(services.length / numServiceDisplay); // Calculate total number of pages for services
@@ -213,8 +218,6 @@ export const Admin = () => {
                             <tr className="tr">
                                 <th className="table01">#</th>
                                 <th className="table02">Username</th>
-                                <th className="table03">Name</th>
-                                <th className="table04">Bio</th>
                                 <th className="table05">Following</th>
                                 <th className="table06">Followers</th>
                                 <th className="table07">e-mail address</th>
@@ -228,8 +231,6 @@ export const Admin = () => {
                                 <tr className={`tr ${rowNumbers1[index] % 2 == 0 ? "grayBg" : ""}`} key={user._id}>
                                     <td className="table01">{rowNumbers1[index]}</td>
                                     <td className="table02">{user.username}</td>
-                                    <td className="table03">{user.profile.name ? user.profile.name : ""}</td>
-                                    <td className="table04">"{user.profile.bio ? user.profile.bio : ""}"</td>
                                     <td className="table05">{user.following != "" ? user.following : "none"}</td>
                                     <td className="table06">{user.followedBy != "" ? user.followedBy : "none"}</td>
                                     <td className="table07">{user.email}</td>

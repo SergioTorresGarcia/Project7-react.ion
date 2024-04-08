@@ -125,6 +125,8 @@ export const GetUsers = async (token) => {
     }
 };
 
+
+//delete button in admin view
 export const DeleteUser = async (token, _id) => {
     const options = {
         method: "DELETE",
@@ -141,6 +143,7 @@ export const DeleteUser = async (token, _id) => {
         }
 
         const data = await response.json();
+        console.log("data", data);
         if (!data.success) {
             throw new Error('Failed to delete user: ' + data.message);
         }
@@ -148,5 +151,31 @@ export const DeleteUser = async (token, _id) => {
 
     } catch (error) {
         throw new Error('Delete user failed: ' + error.message);
+    }
+}
+//edit button in admin view
+export const UpdateUser = async (token, _id, newData) => {
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(newData)
+    }
+    try {
+        const response = await fetch(`${root}users/${_id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to update user: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to update user: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Update user failed: ' + error.message);
     }
 }
