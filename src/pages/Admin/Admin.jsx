@@ -2,6 +2,8 @@ import "./Admin.css";
 import { searchData } from "../../app/slices/searchSlice";
 import { userData, deleteUserById, updateUserById } from "../../app/slices/userSlice";
 
+import { FaTrash, FaEdit } from 'react-icons/fa'; // Import icons
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetUsers, DeleteUser, UpdateUser } from "../../services/apiCalls"; //, GetServices, DeleteService, GetAllAppointments, DeleteAppointment
@@ -237,9 +239,8 @@ export const Admin = () => {
                                     <td className="table08">{dayjs(user.createdAt).format("YYYY-MM-DD")}</td>
 
                                     <td className="table09">
-                                        <button className="del" onClick={() => deleteUser(user._id)}>delete</button>
-
-                                        <button className="edit" onClick={() => editUser(user._id)}>edit</button>
+                                        <FaEdit className="icon" onClick={() => deleteUser(user._id)} />
+                                        <FaTrash className="icon" onClick={() => editUser(user._id)} />
                                     </td>
                                 </tr>
                             ))}
