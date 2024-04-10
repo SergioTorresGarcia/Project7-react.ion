@@ -10,13 +10,13 @@
 
 .pagination li {
     border-radius: 1.5em;
-    color: teal;
+    color: pink;
     cursor: pointer;
     padding: 0.5em 1em 0.5em 1em;
 }
 
 .pagination li:hover {
-    background-color: teal;
+    background-color: blueviolet;
     color: gainsboro;
 }
 
@@ -24,8 +24,8 @@
 
 .pagination .active {
     border: 0.01 solid teal;
-    background-color: lightgray;
-    color: teal;
+    background-color: pink;
+    color: black;
 }
 
 .pagination li a {
@@ -39,7 +39,7 @@
 }
 
 .pagination li.active a {
-    background-color: teal;
+    background-color: pink;
     color: gainsboro;
 }
 

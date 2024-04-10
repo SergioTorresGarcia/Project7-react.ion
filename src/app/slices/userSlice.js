@@ -33,8 +33,8 @@ export const userSlice = createSlice({
         },
         updateUserById: (state, action) => {
             console.log("edit : ", action.payload);
-            const { id, updatedUserData } = action.payload;
-            const userToUpdate = state.find(user => user.id === id);
+            const { _id, updatedUserData } = action.payload;
+            const userToUpdate = state.find(user => user._id === id);
             if (userToUpdate) {
                 Object.assign(userToUpdate, updatedUserData);
             }
