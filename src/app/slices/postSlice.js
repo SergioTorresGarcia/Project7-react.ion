@@ -23,9 +23,9 @@ export const postSlice = createSlice({
         updatePostById: (state, action) => {
             console.log("edit : ", action.payload);
             const { _id, updatedPostData } = action.payload;
-            const postToUpdate = state.find(post => post.id === _id);
+            const postToUpdate = state.find(post => post._id === id);
             if (userToUpdate) {
-                Object.assign(userToUpdate, updatedUserData);
+                Object.assign(postToUpdate, updatedPostData);
             }
         }
     }

@@ -6,12 +6,13 @@ import { FaTrash, FaEdit } from 'react-icons/fa'; // Import icons
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GetUsers, DeleteUser, UpdateUser, DeletePost, GetAllPosts } from "../../services/apiCalls"; //, GetServices, DeleteService, GetAllAppointments, DeleteAppointment
+import { GetUsers, DeleteUser, UpdateUser, DeletePost, GetAllPosts, UpdatePost } from "../../services/apiCalls"; //, GetServices, DeleteService, GetAllAppointments, DeleteAppointment
 import dayjs from "dayjs";
 import { Pagination } from "../../common/Pagination/Pagination";
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
+import { CInput } from "../../common/CInput/CInput";
 
 const numUserDisplay = 5;
 const numPostDisplay = 5;
@@ -68,10 +69,11 @@ export const Admin = () => {
         }
     }, [])
 
-    // fetching info
+    // fetching info / deleting
     useEffect(() => {
         fetchUsers();
         fetchPosts();
+
         // fetchServices();
     }, []);
 
@@ -98,9 +100,10 @@ export const Admin = () => {
             }
 
             const postsData = await GetAllPosts(tokenStorage);
+            console.log(postsData.data);
             setLoadedData(true)
             setPosts(postsData.data)
-            console.log(1, postsData.data[0].userId.username);
+            // console.log(1, "username", postsData.data[0].userId.username);
         } catch (error) {
             // throw new Error('Get posts failed: ' + error.message);
         }
@@ -139,11 +142,12 @@ export const Admin = () => {
 
     //button deletes each user by id
     const deleteUser = async (_id) => {
+        console.log(_id);
         try {
             await DeleteUser(tokenStorage, _id);
 
             setUsers(prevUsers => prevUsers.filter(user => user._id !== _id));
-            dispatch(deleteUserById(_id));
+
         } catch (error) {
             throw new Error('Failed to delete user: ', error.message);
         }
@@ -151,6 +155,7 @@ export const Admin = () => {
 
     //button deletes each appointment by id
     const deletePost = async (_id) => {
+        console.log(_id);
         try {
             await DeletePost(tokenStorage, _id);
             setPosts(prevPosts => prevPosts.filter(post => post._id !== _id));
@@ -178,6 +183,16 @@ export const Admin = () => {
             throw new Error('Cannot see user details:' + error.message);
         }
     }
+
+    const editPost = async (_id) => {
+        try {
+            const responseDetails = await UpdatePost(tokenStorage, _id);
+            navigate(`/admin`)
+        } catch (error) {
+            throw new Error('Error updating post:' + error.message);
+        }
+    }
+
 
     const pageCountUsers = Math.ceil(users.length / numUserDisplay); // Calculate total number of pages for users
     const pageCountPosts = Math.ceil(posts.length / numPostDisplay); // Calculate total number of pages for posts
@@ -226,8 +241,8 @@ export const Admin = () => {
                                 <th className="box width-20">Username</th>
                                 <th className="box width-10">Following</th>
                                 <th className="box width-10">Followers</th>
-                                <th className="box width-20">e-mail address</th>
-                                <th className="box width-10">Register since</th>
+                                <th className="box width-20">E-mail address</th>
+                                <th className="box width-10">Registered since</th>
                                 <th className="width-5">Actions</th>
 
                             </tr>
@@ -264,7 +279,9 @@ export const Admin = () => {
                         <thead className="thead">
                             <tr className="tr">
                                 <th className="box width-2">#</th>
+                                <th className="box width-5">PostId</th>
                                 <th className="box width-5">UserId</th>
+                                <th className="box width-10">Username</th>
                                 <th className="box width-50">Content</th>
                                 <th className="box width-15">Post's likes</th>
                                 <th className="box width-2">💜</th>
@@ -273,19 +290,27 @@ export const Admin = () => {
                             </tr>
                         </thead>
                         <tbody className="tbody">
-
+                            {/* .slice(-3) */}
                             {currentPosts.map((post, index) => (
-                                <tr className={`tr ${rowNumbers2[index] % 2 == 0 ? "grayBg" : ""}`} key={post.id}>
+                                <tr className={`tr ${rowNumbers2[index] % 2 == 0 ? "grayBg" : ""}`} key={post._id}>
                                     <td className="box width-2">{rowNumbers2[index]}</td>
-                                    <td className="box width-5">{post.userId.slice(-3)}</td>
-                                    <td className="box width-50">{post.content}</td>
+                                    <td className="box width-5">{post._id.slice(-3)}</td>
+                                    <td className="box width-5">{post.userId._id.slice(-3)}</td>
+                                    <td className="box width-10">{post.userId.username}</td>
+                                    <td className="box width-50">{post.content}
+                                        {/* <CInput
+                                            className="box width-50"
+                                            type="textArea"
+                                            placeholder=""
+                                            name="content"
+                                            disabled="disabled"
+                                            value={post.content}
+                                            onChange={(event) => changeEmit(event)}
+                                        /> */}
+                                    </td>
                                     <td className="box width-15">{post.likes != "" ? post.likes : "none"}</td>
                                     <td className="box width-2">{post.likesCount || 0}</td>
                                     {/* <td className="box width-10">{post._id}</td> */}
-
-                                    {/* <td className="table03">
-                                        (id={post.userId}){" "}{posts.find(user => user.id === post.userId)?.username},{" "}{posts.find(user => user.id === post.userId)?.username}
-                                    </td> */}
 
                                     {/* <td className="service">{posts.find(name => user.id === post.userId)?.username}</td> */}
 

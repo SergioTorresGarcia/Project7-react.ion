@@ -208,7 +208,40 @@ export const GetAllPosts = async (token) => {
     }
 };
 
-export const DeletePost = async (token, _id) => {
+export const CreatePost = async (token, content) => {
+    // console.log("newPost", newPost);
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: content
+
+    }
+    console.log(content.content);
+    // console.log("content", content.target.value);
+    try {
+        const response = await fetch(`${root}posts`, options);
+        console.log(response);
+        if (!response.ok) {
+            console.log(options);
+            throw new Error('Failed to create post: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log("data", data);
+        if (!data.success) {
+            throw new Error('Failed to create post: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Create post failed: ' + error.message);
+    }
+}
+
+export const DeletePost = async (token, x) => {
     const options = {
         method: "DELETE",
         headers: {
@@ -216,8 +249,10 @@ export const DeletePost = async (token, _id) => {
             "Authorization": `Bearer ${token}`
         }
     }
+    console.log(22, x);
     try {
-        const response = await fetch(`${root}posts/${_id}`, options)
+        const response = await fetch(`${root}posts/${x}`, options)
+        console.log(33, x);
         if (!response.ok) {
             throw new Error('Failed to delete post: ' + response.statusText);
         }
@@ -231,6 +266,32 @@ export const DeletePost = async (token, _id) => {
 
     } catch (error) {
         throw new Error('Delete post failed: ' + error.message);
+    }
+}
+
+export const UpdatePost = async (token, _id, newData) => {
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(newData)
+    }
+    try {
+        const response = await fetch(`${root}posts/${_id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to update post: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to update post: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Update post failed: ' + error.message);
     }
 }
 
