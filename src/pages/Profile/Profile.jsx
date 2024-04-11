@@ -52,7 +52,6 @@ export const Profile = () => {
             navigate("/")
         }
     }, [rdxUser])
-    console.log(rdxUser, "rdxUser");
 
     const [tokenStorage, setTokenStorage] = useState(rdxUser.credentials.token);
     useEffect(() => {

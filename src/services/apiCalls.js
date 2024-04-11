@@ -2,6 +2,7 @@
 const root = "http://localhost:4001/api/"
 
 
+// auth (users)
 export const RegisterUser = async (user) => {
     const options = {
         method: "POST",
@@ -53,6 +54,8 @@ export const LoginUser = async (credenciales) => {
     }
 };
 
+
+// profile
 export const GetProfile = async (token) => {
     const options = {
         method: "GET",
@@ -101,6 +104,8 @@ export const UpdateProfile = async (token, user) => {
     }
 };
 
+
+// admin > users
 export const GetUsers = async (token) => {
     const options = {
         method: "GET",
@@ -125,8 +130,6 @@ export const GetUsers = async (token) => {
     }
 };
 
-
-//delete button in admin view
 export const DeleteUser = async (token, _id) => {
     const options = {
         method: "DELETE",
@@ -137,7 +140,6 @@ export const DeleteUser = async (token, _id) => {
     }
     try {
         const response = await fetch(`${root}users/${_id}`, options)
-        console.log("response", response);
         if (!response.ok) {
             throw new Error('Failed to delete user: ' + response.statusText);
         }
@@ -153,7 +155,7 @@ export const DeleteUser = async (token, _id) => {
         throw new Error('Delete user failed: ' + error.message);
     }
 }
-//edit button in admin view
+
 export const UpdateUser = async (token, _id, newData) => {
     const options = {
         method: "PUT",
@@ -179,3 +181,143 @@ export const UpdateUser = async (token, _id, newData) => {
         throw new Error('Update user failed: ' + error.message);
     }
 }
+
+// admin > posts
+export const GetAllPosts = async (token) => {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+
+    try {
+        const response = await fetch(`${root}posts`, options);
+        console.log("response", response);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+        return data;
+    } catch (error) {
+        throw new Error('Get posts failed: ' + error.message);
+    }
+};
+
+export const CreatePost = async (token, content) => {
+    // console.log("newPost", newPost);
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: content
+
+    }
+    console.log(content.content);
+    // console.log("content", content.target.value);
+    try {
+        const response = await fetch(`${root}posts`, options);
+        console.log(response);
+        if (!response.ok) {
+            console.log(options);
+            throw new Error('Failed to create post: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log("data", data);
+        if (!data.success) {
+            throw new Error('Failed to create post: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Create post failed: ' + error.message);
+    }
+}
+
+export const DeletePost = async (token, x) => {
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    }
+    console.log(22, x);
+    try {
+        const response = await fetch(`${root}posts/${x}`, options)
+        console.log(33, x);
+        if (!response.ok) {
+            throw new Error('Failed to delete post: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log("data", data);
+        if (!data.success) {
+            throw new Error('Failed to delete post: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete post failed: ' + error.message);
+    }
+}
+
+export const UpdatePost = async (token, _id, newData) => {
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(newData)
+    }
+    try {
+        const response = await fetch(`${root}posts/${_id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to update post: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to update post: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Update post failed: ' + error.message);
+    }
+}
+
+//probably i can use the fetched posts and filter with userId from token?
+export const GetOwnPosts = async (token) => {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+
+    try {
+        const response = await fetch(`${root}posts/own`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+        return data;
+    } catch (error) {
+        throw new Error('Get posts failed: ' + error.message);
+    }
+};
+
+//delete button in admin view
