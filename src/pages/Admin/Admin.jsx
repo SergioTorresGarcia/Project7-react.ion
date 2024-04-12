@@ -69,12 +69,10 @@ export const Admin = () => {
         }
     }, [])
 
-    // fetching info / deleting
+    // fetching info
     useEffect(() => {
         fetchUsers();
         fetchPosts();
-
-        // fetchServices();
     }, []);
 
     // geting users

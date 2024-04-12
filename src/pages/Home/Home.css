@@ -1,14 +1,60 @@
 .home-design {
-    height: 80vh;
+    min-height: 80vh;
     width: 100vw;
 
     background-color: #B5EFDC;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .gif {
-    height: 80vh;
+    height: 75vh;
+}
+
+.center-part {
+    width: 50vw;
+    height: 70vh;
+    background-color: whitesmoke;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.new-post {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+.newPost-btn {
+    width: 45vw;
+    padding: 0.5em;
+    margin: 0.25em 0 0.25em 0;
+    cursor: pointer;
+    color: gainsboro;
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+}
+
+
+.cardGroup {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.left-part,
+.right-part {
+    width: 20vw;
+    min-height: 70vh;
+    background-color: gray;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }

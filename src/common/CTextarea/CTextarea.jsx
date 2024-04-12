@@ -4,6 +4,7 @@ export const CTextarea = ({
     type,
     name,
     value,
+    placeholder,
     // disabled,
     onChangeFunction,
     className,
@@ -14,6 +15,7 @@ export const CTextarea = ({
             type={type}
             name={name}
             value={value}
+            placeholder={placeholder}
             // disabled={disabled}
             onChange={onChangeFunction}
             className={className}

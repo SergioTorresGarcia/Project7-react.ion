@@ -1,0 +1,10 @@
+.card-design {
+
+    width: 45vw;
+    height: auto;
+    border: 0.05em solid blueviolet;
+    border-radius: 0.5em;
+    background-color: white;
+    background: (90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    margin: 0.5em;
+}
