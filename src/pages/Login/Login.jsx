@@ -110,6 +110,8 @@ export const Login = () => {
                     <div className="btn">
                         <div className="btn" onClick={loginMe}>Login</div>
                     </div>
+                    <br /><br />
+                    <div><a className="white-color" href="./Register">Register</a>  if this is your first time here</div>
                 </div>
             ) : (
                 <div className="behind-btns">

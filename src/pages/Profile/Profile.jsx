@@ -52,6 +52,7 @@ export const Profile = () => {
             navigate("/")
         }
     }, [rdxUser])
+    console.log(rdxUser, "rdxUser");
 
     const [tokenStorage, setTokenStorage] = useState(rdxUser.credentials.token);
     useEffect(() => {
@@ -118,7 +119,7 @@ export const Profile = () => {
                     <span className="greenish">you will need to log back in<br />after any information update</span>
                     <span className="greenish">⚠️</span>
                     <br />
-                    <div>
+                    <div className="center">
                         <CInput
                             className={`input-design ${userError.usernameError !== "" ? "input-design-error" : ""} ${write === "" ? "border-edit" : ""}`}
                             type="text"
@@ -156,8 +157,9 @@ export const Profile = () => {
                             changeEmit={(e) => inputHandler(e)}
                         // onBlurFunction={(e) => checkError(e)}
                         />
+
                         <CButton
-                            className={(write === "") ? "btn cButtonDesign cButtonGreen" : "btn cButtonDesign"}
+                            className={(write === "") ? "btn cButtonDesign behind" : "btn cButtonDesign"}
                             title={write === "" ? "Confirm" : "Edit"}
                             functionEmit={write === "" ? updateData : () => setWrite("")}
                         />

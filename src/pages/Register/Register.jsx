@@ -83,7 +83,7 @@ export const Register = () => {
                         className={`input-design ${userError.usernameError !== "" ? "input-design-error" : ""
                             }`}
                         type="text"
-                        placeholder="Choose an username"
+                        placeholder="Choose your username"
                         name="username"
                         value={user.username || ""}
                         changeEmit={(e) => inputHandler(e)}
@@ -95,7 +95,7 @@ export const Register = () => {
                         className={`input-design ${userError.emailError !== "" ? "input-design-error" : ""
                             }`}
                         type="email"
-                        placeholder="Write your email"
+                        placeholder="example@domain.com"
                         name="email"
                         value={user.email || ""}
                         changeEmit={(e) => inputHandler(e)}
@@ -107,7 +107,7 @@ export const Register = () => {
                         className={`input-design ${userError.passwordError !== "" ? "input-design-error" : ""
                             }`}
                         type="password"
-                        placeholder="Password must have between 8 and 14 characters, and contain small/big letters and numbers"
+                        placeholder="8-14 characters (incl.: small, big letters and numbers)"
                         name="password"
                         value={user.password || ""}
                         changeEmit={(e) => inputHandler(e)}
@@ -119,7 +119,11 @@ export const Register = () => {
                         <div className="btn" onClick={registerMe}>Register</div>
                     </div>
 
+                    <br /><br />
+                    <div><a className="white-color" href="./Login">Login</a>  if you have an account already</div>
+
                 </div>
+
             ) : (
                 <div className="behind-btns">
                     <div>{msg}</div>

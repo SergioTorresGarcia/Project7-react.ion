@@ -16,7 +16,7 @@
     width: auto;
     height: auto;
     border-radius: 0.5em;
-    padding: 5em;
+    padding: 2em;
     /* background: rgb(122, 9, 238); */
     background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
     display: flex;
