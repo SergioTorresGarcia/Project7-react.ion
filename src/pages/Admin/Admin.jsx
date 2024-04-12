@@ -24,9 +24,9 @@ export const Admin = () => {
     //Instancia de Redux en modo lectura para home
     const searchRdx = useSelector(searchData);
 
-    useEffect(() => {
-        console.log(searchRdx);
-    }, [searchRdx]);
+    // useEffect(() => {
+    //     console.log(searchRdx);
+    // }, [searchRdx]);
     ///
 
     //Instancia de Redux para escritura y lectura (see and edit profile)
@@ -98,7 +98,6 @@ export const Admin = () => {
             }
 
             const postsData = await GetAllPosts(tokenStorage);
-            console.log(postsData.data);
             setLoadedData(true)
             setPosts(postsData.data)
             // console.log(1, "username", postsData.data[0].userId.username);

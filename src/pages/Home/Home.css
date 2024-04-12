@@ -2,7 +2,7 @@
     min-height: 80vh;
     width: 100vw;
 
-    background-color: #B5EFDC;
+    background-color: black;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -14,30 +14,42 @@
 }
 
 .center-part {
-    width: 50vw;
-    height: 70vh;
-    background-color: whitesmoke;
-    margin: 1em;
+    /* width: 50vw; */
+    max-height: 80vh;
+    /* background-color: gainsboro; */
+    /* margin: 1em; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+
+.timeline {
     overflow-y: scroll;
 }
 
 .new-post {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-top: 1em;
+    border-radius: 0.5em;
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    opacity: 100%;
+
 }
 
 .newPost-btn {
-    width: 45vw;
+    width: 25vw;
     padding: 0.5em;
-    margin: 0.25em 0 0.25em 0;
+    margin: 0.5em 0.5em 0.25em 0.5em;
+    border-radius: 0.5em;
     cursor: pointer;
     color: gainsboro;
-    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    /* background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%); */
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -47,14 +59,45 @@
     align-items: center;
 }
 
+.my-posts {
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    /* border: 0.02em solid #98eed1;
+    background-color: #98eed13a;
+    border-radius: 0.5em; */
+    margin: 0.5em 0 0.5em 0;
+    color: gainsboro;
+    overflow-y: scroll;
+}
+
 .left-part,
 .right-part {
-    width: 20vw;
-    min-height: 70vh;
-    background-color: gray;
+    width: 25vw;
+    min-height: 78vh;
+    /* background-color: gray; */
+    border-radius: 0.5em;
     margin: 1em;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+.textarea-placehold {
+    overflow-y: hidden;
+    min-width: 42vw;
+    height: 5em;
+    padding: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #98eed1;
+    border-radius: 0.5em;
+
+    border: 0.02em solid blueviolet;
+
 }
