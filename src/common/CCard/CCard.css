@@ -39,6 +39,7 @@
     margin: 1em;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .down-line {
@@ -54,6 +55,7 @@
     justify-content: flex-end;
     /* padding-right: 1em; */
     cursor: pointer;
+    z-index: 800;
 }
 
 .middle-author {

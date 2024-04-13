@@ -1,0 +1,94 @@
+.postDetailDesign {
+    min-height: 86.5vh;
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.details {
+    height: auto;
+    width: auto;
+    padding: 1em;
+    border-radius: 0.5em;
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    color: gainsboro;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    transition: 0.5s;
+}
+
+.big {
+    display: flex;
+    justify-content: center;
+    transform: scale(2);
+}
+
+.top-line,
+.down-line {
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 20em;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    max-width: 50em;
+}
+
+textDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-style: italic;
+    font-size: x-large;
+
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.5em 2em 0.5em 2em;
+    max-width: 40em;
+
+}
+
+.exit {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    /* height: 15em;
+    width: 100%; */
+    cursor: pointer;
+}
+
+.clickableArea {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1em;
+    max-width: 40em;
+    cursor: pointer;
+
+    font-style: italic;
+    font-size: x-large;
+
+}

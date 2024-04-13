@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchData } from "../../app/slices/searchSlice";
 import { useEffect, useState } from "react";
 import { userData } from "../../app/slices/userSlice";
-import { postData } from "../../app/slices/postSlice";
+
 import { useNavigate } from "react-router-dom";
 import CCard from "../../common/CCard/CCard";
 import { CreatePost, GetAllPosts, GetPostById } from "../../services/apiCalls";
@@ -69,9 +69,6 @@ export const Home = () => {
 
     const seeDetails = async (_id) => {
         try {
-            const responseDetails = await GetPostById(tokenStorage, _id);
-            console.log(responseDetails);
-            setDataDetails(responseDetails.data)
             navigate(`/postDetails/${_id}`)
         } catch (error) {
             throw new Error('Cannot see post details:' + error.message);
@@ -87,6 +84,7 @@ export const Home = () => {
                     'Authorization': `Bearer ${tokenStorage}`
                 }
             });
+            console.log("id", _id);
 
             if (!response.ok) {
                 throw new Error('Failed to like/unlike post');
@@ -95,7 +93,7 @@ export const Home = () => {
             const data = await response.json();
             console.log(data);
             setPosts(prevPosts => prevPosts.map(post => post._id === _id ? { ...post, likesCount: data.data.length } : post))
-
+            setOwnPosts(prevOwnPosts => prevOwnPosts.map(ownPost => ownPost._id === _id ? { ...ownPost, likesCount: data.data.length } : ownPost))
         } catch (error) {
             console.error('Error toggling like/unlike:', error);
         }
@@ -168,6 +166,7 @@ export const Home = () => {
                                         follow={item.userId?.following.includes(item.userId.username) ? <span><a href="#">❌</a> unfollow</span> : <span> <a href="#">➕</a> follow</span>}
                                         // emitFunction={() => like(item._id)}
                                         emitFunction={() => likeUnlike(item._id)}
+                                        onClick={() => seeDetails(item._id)}
 
                                     // imageUrl={item.imageUrl} // {`https://picsum.photos/${item._id.slice(-3)}` || ""}
                                     />

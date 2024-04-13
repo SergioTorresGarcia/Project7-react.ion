@@ -260,20 +260,7 @@ export const Admin = () => {
                                     <td className="box width-15">{post.likes != "" ? post.likes.map(name => <p>{name}</p>
                                     ) : "none"}</td>
                                     <td className="box width-2">{post.likesCount || 0}</td>
-                                    {/* <td className="box width-10">{post._id}</td> */}
 
-                                    {/* <td className="service">{posts.find(name => user.id === post.userId)?.username}</td> */}
-
-
-                                    {/* <td className="day">{dayjs(appointment.appointmentDate).format("ddd YYYY-MM-DD")}</td>
-                                    <td className="time">{dayjs(appointment.appointmentDate).format("HH:mm")}</td> */}
-
-                                    {/* <td className="buttons">
-                                        <button className="del" onClick={() => deletePost(post.id)}>delete</button>
-                                    </td>
-                                    <td className="">
-                                        <button className="edit" onClick={() => editPost(post.id)}>edit</button>
-                                    </td> */}
                                     <td className="width-5 btns">
                                         <FaEdit className="icon" onClick={() => editPost(post._id)} />
                                         <FaTrash className="icon" onClick={() => deletePost(post._id)} />

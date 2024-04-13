@@ -1,121 +1,94 @@
-
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { CInput } from "../../common/CInput/CInput";
-import { CButton } from "../../common/CButton/CButton";
-import { postData } from "../../app/slices/postSlice";
 import "./PostDetails.css"
-import { UpdatePost } from "../../services/apiCalls";
+import { useNavigate } from "react-router-dom";
+import { GetPostById } from "../../services/apiCalls";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { userData } from "../../app/slices/userSlice";
+import { likePost } from "../../services/apiCalls";
 
 export const PostDetails = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const rdxUser = useSelector(postData);
-    const { _id } = useParams();
-
-    const [post, setPost] = useState({
-        userId: "",
-        content: "",
-    });
-
-    const [userError, setUserError] = useState({
-        userIdError: "",
-        contentError: "",
-    });
-
-    const [loadedData, setLoadedData] = useState(false);
-
+    const rdxUser = useSelector(userData);
     const [tokenStorage, setTokenStorage] = useState(rdxUser.credentials.token);
+    const navigate = useNavigate();
+    const [info, setInfo] = useState(null);
+    const { _id } = useParams();
+    const [posts, setPosts] = useState([]);
+    const [ownPosts, setOwnPosts] = useState([]);
+
+    const seeDetails = async () => {
+        try {
+            const response = await GetPostById(tokenStorage, _id);
+            setInfo(response.data)
+        } catch (error) {
+            throw new Error('Cannot see post details:' + error.message);
+        }
+    }
 
     useEffect(() => {
-        const getPostDetailsFromAPI = async (_id) => {
-            try {
-                const fetchedPost = await UpdatePost(tokenStorage, _id, {});
+        seeDetails(_id)
+    }, [_id]);
 
-                setPost(fetchedPost.data);
-                setLoadedData(false);
-            } catch (error) {
-                console.error('Error fetching post details:', error);
-            }
-        };
-
-        getPostDetailsFromAPI(_id);
-    }, [_id, tokenStorage]);
-
-    const inputHandler = (e) => {
-        setPost((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }));
-    };
-
-    const updatePost = async () => {
+    const likeUnlike = async (_id) => {
         try {
-            await UpdatePost(tokenStorage, _id, post);
-            navigate(`/admin`);
+            const response = await fetch(`http://localhost:4001/api/posts/${_id}/like`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenStorage}`
+                }
+            });
+            console.log("id", _id);
+
+            if (!response.ok) {
+                throw new Error('Failed to like/unlike post');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            setPosts(prevPosts => prevPosts.map(post => post._id === _id ? { ...post, likesCount: data.data.length } : post))
+            setOwnPosts(prevOwnPosts => prevOwnPosts.map(ownPost => ownPost._id === _id ? { ...ownPost, likesCount: data.data.length } : ownPost))
         } catch (error) {
-            console.error('Error updating post:', error);
+            console.error('Error toggling like/unlike:', error);
         }
     };
 
     return (
-        <div className="post-detail-design">
-            <h2 className="white-color behind">Edit post</h2>
-            <label className="white-color">User Id</label>
-            {/* <CInput
-                className="input-design"
-                type="text"
-                placeholder="userId"
-                name="_id"
-                value={user._id}
-                disabled="disabled"
-                changeEmit={(e) => inputHandler(e)}
-            /> */}
-            <label className="white-color">Username</label>
-            {/* <CInput
-                className="input-design border-edit"
-                type="text"
-                placeholder="username"
-                name="username"
-                value={user.username}
-                changeEmit={(e) => inputHandler(e)}
-            /> */}
-            <label className="white-color">Name</label>
-            {/* <CInput
-                className="input-design border-edit"
-                type="text"
-                placeholder="your name"
-                name="name"
-                value={user.profile.name}
-                changeEmit={(e) => inputHandler(e)}
-            /> */}
-            <label className="white-color">Bio</label>
-            {/* <CInput
-                className="input-design border-edit"
-                type="text"
-                placeholder="write something about you"
-                name="bio"
-                value={user.profile.bio}
-                changeEmit={(e) => inputHandler(e)}
-            /> */}
-            <label className="white-color">Email</label>
-            {/* <CInput
-                className="input-design"
-                type="email"
-                placeholder=""
-                name="email"
-                disabled="disabled"
-                value={user.email}
-                changeEmit={(e) => inputHandler(e)}
-            /> */}
+        <>
+            <div className="postDetailDesign">
+                <div className="details" >
 
-            <CButton
-                className="btn cButtonDesign behind"
-                title="Save changes"
-                functionEmit={updatePost}
-            />
-        </div>
-    );
-};
+                    {info && (
+                        <div className="allDetail">
+                            <div className="">
+                                {/* <span>Author:</span> */}
+                                <div className="top-line">
+                                    <div className="left"><span>{` ${info.userId?.profile.name} - ${info.userId?.profile.bio}`}</span></div>
+                                </div>
 
+
+                                <br /><br />
+                                <div className="clickableArea" onClick={() => navigate(`/`)}>
+                                    <span className="big">❝</span>
+                                    <span className="textDetail">{info.content}</span>
+                                    <span className="big">❝</span>
+                                </div>
+                                <br /><br />
+                                <div className="down-line" onClick={() => likeUnlike(item._id)}>
+                                    <div className="left"><span>{"🤍 " + (info.likesCount || 0)}</span></div>
+
+
+                                    {info.likesCount > 0 && <div className="right"><p>Liked by:</p>{info.likes != ""
+                                        ? <div> {info.likes.map(name => <span>&nbsp;{name}</span>)} </div>
+                                        : ""}</div>}
+
+                                </div>
+
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div >
+        </>
+    )
+}

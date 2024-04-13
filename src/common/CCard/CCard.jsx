@@ -1,12 +1,12 @@
 import React from 'react';
 import "./CCard.css";
 
-const CCard = ({ className, content, follow, username, likesCount, emitFunction }) => {
+const CCard = ({ className, content, follow, username, likesCount, emitFunction, onClick }) => {
 
     return (
-        <div className={className}>  {/* onClick={emitFunction} */}
+        <div className={className}>
             <div className="card-content">
-                <div className='quote'>
+                <div className='quote' onClick={onClick} >
                     {/* <img src={imageUrl} alt={`Image for post ${_id}`} /> */}
                     <span>❝</span> {content && content.length > 100 ? content.slice(0, 100) + "..." : content} <span>❝</span>
                     {/* <p>{userId.slice(-3)}</p> */}
