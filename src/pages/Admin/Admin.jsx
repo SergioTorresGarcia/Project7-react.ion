@@ -256,7 +256,9 @@ export const Admin = () => {
                                             onChange={(event) => changeEmit(event)}
                                         /> */}
                                     </td>
-                                    <td className="box width-15">{post.likes != "" ? post.likes : "none"}</td>
+                                    {/* mapping likes we display them one under another in the admin table */}
+                                    <td className="box width-15">{post.likes != "" ? post.likes.map(name => <p>{name}</p>
+                                    ) : "none"}</td>
                                     <td className="box width-2">{post.likesCount || 0}</td>
                                     {/* <td className="box width-10">{post._id}</td> */}
 
