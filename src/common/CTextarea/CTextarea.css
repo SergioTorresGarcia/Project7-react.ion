@@ -1,18 +1,17 @@
 .textareaDesign {
     overflow-y: hidden;
-    width: 25em;
-    height: 15em;
+    min-width: 42vw;
+    height: 5em;
+    padding: 1em;
+
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
-    text-align: flex-start;
-    border: 0.1em solid transparent;
-    background-color: transparent;
-    font-size: 1.2rem;
-    font-weight: bold;
-    background-color: white;
-    border: 0.2em solid rgb(31, 115, 240);
-    color: rgb(31, 115, 240);
+    justify-content: center;
+    /* flex-wrap: wrap;
+    overflow-wrap: break-word; */
+    background-color: #98eed1;
+    border-radius: 0.5em;
+
+    border: 0.02em solid blueviolet;
+
 }

@@ -4,20 +4,18 @@ export const CTextarea = ({
     type,
     name,
     value,
-    // disabled,
-    onChangeFunction,
+    placeholder,
+    onChange,
     className,
-    // maxLength,
 }) => {
     return (
-        <textarea
+        <CTextarea
             type={type}
             name={name}
             value={value}
-            // disabled={disabled}
-            onChange={onChangeFunction}
+            placeholder={placeholder}
+            onChange={onChange}
             className={className}
-        // maxLength={maxLength}
         />
     );
 };

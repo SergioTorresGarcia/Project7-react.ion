@@ -194,7 +194,6 @@ export const GetAllPosts = async (token) => {
 
     try {
         const response = await fetch(`${root}posts`, options);
-        console.log("response", response);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -320,4 +319,59 @@ export const GetOwnPosts = async (token) => {
     }
 };
 
+export const GetPostById = async (token, _id) => {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+
+    try {
+        const response = await fetch(`${root}posts/${_id}`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+        return data;
+    } catch (error) {
+        throw new Error('Get posts failed: ' + error.message);
+    }
+};
+
+
 //delete button in admin view
+
+
+// like/unlike posts
+
+export const likePost = async (_id, token) => {
+    try {
+        const response = await fetch(`http://localhost:4001/api/posts/${_id}/like`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        console.log("data", data);
+        console.log("response", response);
+        if (!response.ok) {
+            throw new Error('Failed to like/unlike post');
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        return data;
+    } catch (error) {
+        throw new Error('Failed to like/unlike post: ' + error.message);
+    }
+};
