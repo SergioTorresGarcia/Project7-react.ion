@@ -146,8 +146,8 @@ export const Home = () => {
                         </div>
 
                         {/* timeline (all posts - mapping cards) */}
-                        <div className="white-color"> * Your timeline * </div>
                         <div className="timeline">
+                            <div className="white-color"> * Your timeline * </div>
                             {/* <div>all posts from all users</div>
                                 <div>extra detail (modal/popup??)</div>
                                 <div>like/unlike buttons</div> */}

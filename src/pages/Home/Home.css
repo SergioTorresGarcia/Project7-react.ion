@@ -25,6 +25,7 @@
 }
 
 .timeline {
+    /* margin-top: 2em; */
     overflow-y: scroll;
 }
 

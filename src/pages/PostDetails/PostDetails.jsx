@@ -48,6 +48,7 @@ export const PostDetails = () => {
             console.log(data);
             setPosts(prevPosts => prevPosts.map(post => post._id === _id ? { ...post, likesCount: data.data.length } : post))
             setOwnPosts(prevOwnPosts => prevOwnPosts.map(ownPost => ownPost._id === _id ? { ...ownPost, likesCount: data.data.length } : ownPost))
+            setInfo(info => info._id === _id ? { ...info, likesCount: data.data.length } : info)
         } catch (error) {
             console.error('Error toggling like/unlike:', error);
         }
@@ -74,8 +75,8 @@ export const PostDetails = () => {
                                     <span className="big">❝</span>
                                 </div>
                                 <br /><br />
-                                <div className="down-line" onClick={() => likeUnlike(item._id)}>
-                                    <div className="left"><span>{"🤍 " + (info.likesCount || 0)}</span></div>
+                                <div className="down-line">
+                                    <div className="left" onClick={() => likeUnlike(_id)}><span>{"🤍 " + (info.likesCount || 0)}</span></div>
 
 
                                     {info.likesCount > 0 && <div className="right"><p>Liked by:</p>{info.likes != ""
