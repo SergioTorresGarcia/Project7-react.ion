@@ -6,6 +6,7 @@ import { CInput } from "../../common/CInput/CInput";
 import { CButton } from "../../common/CButton/CButton";
 import { postData } from "../../app/slices/postSlice";
 import "./PostDetails.css"
+import { UpdatePost } from "../../services/apiCalls";
 
 export const PostDetails = () => {
     const navigate = useNavigate();

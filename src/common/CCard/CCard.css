@@ -53,6 +53,7 @@
     align-items: flex-end;
     justify-content: flex-end;
     /* padding-right: 1em; */
+    cursor: pointer;
 }
 
 .middle-author {

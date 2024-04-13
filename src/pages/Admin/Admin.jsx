@@ -6,7 +6,7 @@ import { FaTrash, FaEdit } from 'react-icons/fa'; // Import icons
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GetUsers, DeleteUser, UpdateUser, DeletePost, GetAllPosts, UpdatePost } from "../../services/apiCalls"; //, GetServices, DeleteService, GetAllAppointments, DeleteAppointment
+import { GetUsers, DeleteUser, UpdateUser, DeletePost, GetAllPosts, UpdatePost } from "../../services/apiCalls";
 import dayjs from "dayjs";
 import { Pagination } from "../../common/Pagination/Pagination";
 
@@ -16,18 +16,16 @@ import { CInput } from "../../common/CInput/CInput";
 
 const numUserDisplay = 5;
 const numPostDisplay = 5;
-// const numServiceDisplay = 2;
 
 export const Admin = () => {
 
-    ///
+
     //Instancia de Redux en modo lectura para home
     const searchRdx = useSelector(searchData);
 
-    // useEffect(() => {
-    //     console.log(searchRdx);
-    // }, [searchRdx]);
-    ///
+    useEffect(() => {
+        console.log(searchRdx);
+    }, [searchRdx]);
 
     //Instancia de Redux para escritura y lectura (see and edit profile)
     const dispatch = useDispatch();
@@ -46,21 +44,17 @@ export const Admin = () => {
 
     const [users, setUsers] = useState([]);
     const [posts, setPosts] = useState([]);
-    // const [services, setServices] = useState([]);
 
     const [rowNumbers1, setRowNumbers1] = useState([]);
     const [rowNumbers2, setRowNumbers2] = useState([]);
-    // const [rowNumbers3, setRowNumbers3] = useState([]);
 
     const [roleStorage, setRoleStorage] = useState(rdxUser?.credentials.user.roleName);
 
     const [currentPageU, setCurrentPageU] = useState(1);
     const [currentPageP, setCurrentPageP] = useState(1);
-    // const [currentPageS, setCurrentPageS] = useState(1);
 
     const [usersPerPage] = useState(numUserDisplay); // Number of users per page
     const [postsPerPage] = useState(numPostDisplay); // Number of appointments per page
-    // const [servicesPerPage] = useState(numServiceDisplay); // Number of services per page
 
     // control admin access only
     useEffect(() => {
@@ -84,7 +78,6 @@ export const Admin = () => {
             const usersData = await GetUsers(tokenStorage);
             setLoadedData(true)
             setUsers(usersData.data)
-            console.log(0, usersData);
         } catch (error) {
             throw new Error('Get users failed: ' + error.message);
         }
@@ -100,23 +93,10 @@ export const Admin = () => {
             const postsData = await GetAllPosts(tokenStorage);
             setLoadedData(true)
             setPosts(postsData.data)
-            // console.log(1, "username", postsData.data[0].userId.username);
         } catch (error) {
-            // throw new Error('Get posts failed: ' + error.message);
+            throw new Error('Get posts failed: ' + error.message);
         }
     };
-
-    // // geting services
-    // const fetchServices = async () => {
-    //     try {
-    //         const responseServices = await GetServices(); //fetching function in apiCalls.js
-    //         setServices(responseServices.data); //we update data with the fetched response
-
-    //     } catch (error) {
-    //         throw new Error('Cannot fetch services:' + error.message);
-    //     }
-    // };
-
 
     // Users indexes ordered (as ids might be not continuous when some are deleted
     useEffect(() => {
@@ -130,21 +110,13 @@ export const Admin = () => {
         setRowNumbers2(numbers2);
     }, [posts]);
 
-    // // Services indexes ordered (as ids might be not continuous when some are deleted
-    // useEffect(() => {
-    //     const numbers3 = services.map((_, index) => index + 1);
-    //     setRowNumbers3(numbers3);
-    // }, [services]);
-
 
     //button deletes each user by id
     const deleteUser = async (_id) => {
         console.log(_id);
         try {
             await DeleteUser(tokenStorage, _id);
-
             setUsers(prevUsers => prevUsers.filter(user => user._id !== _id));
-
         } catch (error) {
             throw new Error('Failed to delete user: ', error.message);
         }
@@ -160,16 +132,6 @@ export const Admin = () => {
             throw new Error('Failed to delete post: ', error.message);
         }
     };
-
-    // //button deletes each service by id
-    // const deleteService = async (id) => {
-    //     try {
-    //         await DeleteService(tokenStorage, id);
-    //         setServices(prevServices => prevServices.filter(service => service.id !== id));
-    //     } catch (error) {
-    //         throw new Error('Failed to delete service: ', error.message);
-    //     }
-    // };
 
 
     const editUser = async (_id) => {
@@ -193,7 +155,6 @@ export const Admin = () => {
 
     const pageCountUsers = Math.ceil(users.length / numUserDisplay); // Calculate total number of pages for users
     const pageCountPosts = Math.ceil(posts.length / numPostDisplay); // Calculate total number of pages for posts
-    // const pageCountServices = Math.ceil(services.length / numServiceDisplay); // Calculate total number of pages for services
 
     // Pagination controls
     const handlePageClickUsers = ({ selected }) => {
@@ -202,9 +163,6 @@ export const Admin = () => {
     const handlePageClickPosts = ({ selected }) => {
         setCurrentPageP(selected); // Update current page for posts
     };
-    // const handlePageClickServices = ({ selected }) => {
-    //     setCurrentPageS(selected); // Update current page for services
-    // };
 
     // Pagination logic
     const indexOfLastUser = currentPageU * usersPerPage;
@@ -215,14 +173,8 @@ export const Admin = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-    // const indexOfLastService = currentPageS * servicesPerPage;
-    // const indexOfFirstService = indexOfLastService - servicesPerPage;
-    // const currentServices = services.slice(indexOfFirstService, indexOfLastService);
-
-
     const paginateU = (pageNumber1) => setCurrentPageU(pageNumber1);
     const paginateP = (pageNumber2) => setCurrentPageP(pageNumber2);
-    // const paginateA = (pageNumber3) => setCurrentPageA(pageNumber3);
 
     return (
         <>
@@ -287,13 +239,12 @@ export const Admin = () => {
                             </tr>
                         </thead>
                         <tbody className="tbody">
-                            {/* .slice(-3) */}
                             {currentPosts.map((post, index) => (
                                 <tr className={`tr ${rowNumbers2[index] % 2 == 0 ? "grayBg" : ""}`} key={post._id}>
                                     <td className="box width-2">{rowNumbers2[index]}</td>
                                     <td className="box width-5">{post._id.slice(-3)}</td>
-                                    <td className="box width-5">{post.userId._id.slice(-3)}</td>
-                                    <td className="box width-10">{post.userId.username}</td>
+                                    <td className="box width-5">{post.userId?._id.slice(-3)}</td>
+                                    <td className="box width-10">{post.userId?.username}</td>
                                     <td className="box width-50">{post.content}
                                         {/* <CInput
                                             className="box width-50"
@@ -336,45 +287,6 @@ export const Admin = () => {
                         totalPages={Math.ceil(posts.length / postsPerPage)}
                         onPageChange={paginateP}
                     />
-
-                    {/* SERVICES */}
-                    {/* 
-                        <div className="div"> SERVICES: there are a total of {services.length} entries</div>
-                    <table className="table">
-                        <thead className="thead">
-                            <tr className="tr th">
-                                <th className="pos">#</th>
-                                <th className="title">Title</th>
-                                <th className="description">Description</th>
-                                <th className="image">image</th>
-                            </tr>
-                        </thead>
-                        <tbody className="tbody">
-                            {currentServices.map((service, index) => (
-                                <div className={`div ${rowNumbers2[index] % 2 == 0 ? "grayBg" : ""}`} key={service.id}>
-                                    <td className="pos">{rowNumbers2[index]}</td>
-                                    <td className="title">{service.serviceName}</td>
-                                    <td className="description">{service.description}</td>
-                                    <td className="image"><img src={`./src/img/s${service.id <= 4 ? service.id : service.id % 4}.png`} alt={service.id} /></td>
-                                    <td className="buttons">
-                                        <button className="del" onClick={() => deleteService(service.id)}>delete</button>
-                                    </td>
-                                    {/* <td className="">
-                                        <button className="edit" onClick={() => editService(service.id)}>edit</button>
-                                    </td> 
-                                </div>
-                            ))}
-                        </tbody>*/}
-                    {/* Pagination */}
-                    {/*  <Pagination
-                            currentPage={currentPageS}
-                            totalPages={Math.ceil(services.length / servicesPerPage)}
-                            onPageChange={paginateS}
-                        />
-                    </table>
-*/}
-
-
                 </div>
             </div >
         </>
