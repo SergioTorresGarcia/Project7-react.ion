@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
-import { likePost } from "../../services/apiCalls";
+import dayjs from "dayjs";
 
 export const PostDetails = () => {
     const rdxUser = useSelector(userData);
@@ -65,7 +65,8 @@ export const PostDetails = () => {
                                 {/* <span>Author:</span> */}
                                 <div className="top-line">
                                     <div className="left"><span>{` ${info.userId?.profile.name} - ${info.userId?.profile.bio}`}</span></div>
-                                </div>
+
+                                </div><div>{dayjs(info.createdAt).format("ddd DD-MM-YYYY")}</div>
 
 
                                 <br /><br />

@@ -32,13 +32,8 @@ export const Home = () => {
     const [ownPosts, setOwnPosts] = useState([]);
 
     const [dataDetails, setDataDetails] = useState([])
-    const [newPost, setNewPost] = useState({
-        content: '',
-        // userId: tokenStorage
-        // likes: [],
-        // likesCount: 0
-    });
-    console.log(rdxUser);
+    const [newPostContent, setNewPostContent] = useState("");
+
 
     useEffect(() => {
         if (!tokenStorage) {
@@ -50,7 +45,13 @@ export const Home = () => {
     useEffect(() => {
         fetchUser();
         fetchPosts();
+        setOwnPosts(newPostContent)
+
     }, []);
+    useEffect(() => {
+
+
+    }, [posts])
 
     //getting user info
     const fetchUser = async () => {
@@ -73,7 +74,6 @@ export const Home = () => {
             throw new Error('Get posts failed: ' + error.message);
         }
     };
-
 
     // geting posts
     const fetchPosts = async () => {
@@ -122,6 +122,52 @@ export const Home = () => {
         }
     };
 
+    const followUnfollow = async (_id) => {
+        try {
+            const response = await fetch(`http://localhost:4001/api/users/${_id}/follow`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenStorage}`
+                }
+            });
+            console.log("id", _id);
+
+            if (!response.ok) {
+                throw new Error('Failed to follow/unfollow user');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            // setPosts(prevPosts => prevPosts.map(post => post._id === _id ? { ...post, likesCount: data.data.length } : post))
+            // setOwnPosts(prevOwnPosts => prevOwnPosts.map(ownPost => ownPost._id === _id ? { ...ownPost, likesCount: data.data.length } : ownPost))
+        } catch (error) {
+            console.error('Error toggling follow/unfollow:', error);
+        }
+    };
+
+    const handleCreatePost = async () => {
+        try {
+            if (!newPostContent.trim()) {
+                // alert("To post you need to write something");
+                console.log("To post you need to write something");
+                throw new Error('No');
+            }
+
+            // Call the API to create a new post
+            const post = await CreatePost(tokenStorage, newPostContent);
+            console.log(post);
+            // Emptying the input field
+            setNewPostContent("");
+        } catch (error) {
+            console.error('Error creating post:', error);
+            // alert("New post failed");
+            throw new Error('Failed to like/unlike post');
+        }
+    };
+
+    const photoId = (user && user._id && user._id.toString().slice(-1)) || 'default_value';
+
     return (
         <div className="home-design">
 
@@ -131,29 +177,31 @@ export const Home = () => {
                     <div className="new-post">
 
                         {/* TBD - create post */}
-                        <div className="newPost-btn">
-                            {/* <div className="textarea-placehold">{`What do you wanna share, ${rdxUser.credentials.user.username}?`}</div> */}
 
-                            {/* <CTextarea
-                                    type="text"
-                                    name="content"
-                                    value={newPost.content}
-                                    placeholder={`What do you wanna share, ${rdxUser.credentials.user.username}?`}
-                                    // onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
-                                    className="textareaDesign"
-                                /> */}
+
+                        <div className="newPost-btn"> {/* <div className="new-post"> */}
                             <input
+                                value={newPostContent}
+                                type="text"
+                                name="content"
+                                onChange={(e) => setNewPostContent(e.target.value)}
+                                placeholder={`What do you wanna share, ${rdxUser.credentials.user.username}?`}
+                                className="new-post"
+                            />
+                            {/* <input
                                 placeholder={`What do you wanna share, ${rdxUser.credentials.user.username}?`}
                                 className="new-post-input"
                                 type="text"
                                 name="content"
                             // value={newPost.content}
                             // onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
-                            />
+                            /> */}
                         </div>
-                        <div className="btn-create"> {/* onClick={(e) => handleCreatePost(e)} */}
+                        <div className="btn-create" onClick={handleCreatePost}>PUBLISH</div>
+
+                        {/* <div className="btn-create">
                             PUBLISH
-                        </div>
+                        </div> */}
 
                     </div>
                     <div className="underNewPost">
@@ -163,13 +211,21 @@ export const Home = () => {
                                 <div className="user"><span className="real">{user?.username}&nbsp;&nbsp;</span>|&nbsp;&nbsp;{user?.profile?.name}</div>
                                 <div className="bio" >"{user?.profile?.bio}"</div>
                                 <br />
-                                <img className="profilePic" src={`https://picsum.photos/id/1/300/300`} alt="profile" />
-                                <br />
-
-                                <div className="bio" >You follow: {user.following}</div>
-                                <div className="bio" >Followers: {user.followedBy}</div>
+                                <img className="profilePic" src={`https://picsum.photos/id/${photoId}/300/300`} alt="profile" />
                                 <br />
                             </div>
+
+                            <div className="fol" >{user?.following?.length > 0 && <div className="right"><p>You follow:</p>{user.following != []
+                                ? <div> {user.following.map(name => <p>{name}&nbsp;</p>)} </div>
+                                : "Not following anyone"}</div>}</div>
+
+
+
+
+                            <div className="fol" >{user?.followedBy?.length > 0 && <div className="right"><p>Followers:</p>{user.followedBy != []
+                                ? <div> {user.followedBy.map(name => <p>{name}&nbsp;</p>)} </div>
+                                : "No followers"}</div>}</div>
+                            <br />
                         </div>
                         {/* </div> */}
 
@@ -178,17 +234,26 @@ export const Home = () => {
                             {/* timeline (all posts - mapping cards) */}
                             <div className="timeline">
                                 <div className="cardGroup">
-                                    {posts.map((item) => (
+                                    {posts?.map((item) => (
                                         < CCard
                                             key={item._id}
                                             _id={item._id}
                                             className="card-design"
                                             username={`-- ${item.userId?.username} --`}
                                             content={item.content || "null"}
-                                            likesCount={"💜 " + (item.likesCount || 0) + " likes"}  //♥️  🤍
-                                            follow={item.userId?.following.includes(item.userId.username) ? <span><a href="#">❌</a> unfollow</span> : <span> <a className="plus" href="#">+</a> follow</span>}
-                                            // emitFunction={() => like(item._id)}
+
+                                            // likesCount={
+                                            //     item.likes?.includes(item.userId?.username)
+                                            //         ? <span><a href="#">{`💜  ${item.likesCount} likes`}</a></span>
+                                            //         : <span><a href="#">{`🤍  ${item.likesCount} likes`}</a></span>
+                                            // }
+                                            likesCount={"💜 " + (item.likesCount || 0) + " likes"}
+
+                                            follow={item.userId?.following.includes(item.userId?.username) ? <span><a href="#">❌ unfollow</a></span> : <span> <a className="plus" href="#">+ follow</a></span>}
+
+
                                             emitFunction={() => likeUnlike(item._id)}
+                                            emitFunction2={() => followUnfollow(item._id)}
                                             onClick={() => seeDetails(item._id)}
                                         // imageUrl={item.imageUrl} // {`https://picsum.photos/${item._id.slice(-3)}` || ""}
                                         />
@@ -202,7 +267,7 @@ export const Home = () => {
                             {/* <div className="white-color newPost-btn"> * {`You have published ${ownPosts.length} posts`} * </div> */}
 
                             <div className="my-posts">
-                                {ownPosts.length > 0 ?
+                                {ownPosts?.length > 0 ?
                                     ownPosts.map((item) => (
                                         <CCard
                                             key={item._id}
