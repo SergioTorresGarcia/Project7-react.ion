@@ -1,104 +1,176 @@
 .home-design {
-    min-height: 80vh;
+    min-height: 78vh;
     width: 100vw;
-
     background-color: black;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.gif {
-    height: 75vh;
-}
-
-.center-part {
-    /* width: 50vw; */
-    max-height: 80vh;
-    /* background-color: gainsboro; */
-    /* margin: 1em; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.gif {
+    height: 78vh;
+
+}
+
+.gif-box {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-post {
+    caret-color: fuchsia;
+    width: 60em;
+    min-height: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.25em 0 1em;
+    border-radius: 0 10em 10em 0;
+    background: linear-gradient(90deg, rgba(123, 9, 238, 0.553) 0%, rgba(251, 0, 255, 0.492) 100%);
+    box-shadow: rgba(122, 9, 238, 1) 0px 5px 15px;
+}
+
+.new-post-input {
+    caret-color: fuchsia;
+    width: 60em;
+    min-height: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.25em 0 1em;
+    border-radius: 0 10em 10em 0;
+    background: none;
+    border: none;
+}
+
+.new-post-btn,
+.btn-create {
+    display: inline-flex;
+    justify-content: flex-end;
+    box-shadow: rgb(127, 238, 9, 0.5) 0 0 10px 10px;
+}
+
+.underNewPost {
+    display: flex;
+    flex-direction: row;
+}
+
+.no-posts {
+    color: gainsboro;
+    font-weight: lighter;
+    font-size: xx-large;
+    width: 7.3em;
+    height: 5em;
+    background-color: purple;
+    border-radius: 5em 0 0 5em;
+    border: 0.05 solid lightgreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    margin: 2em 0 2em 2em;
+}
+
+input {
+    color: antiquewhite;
+}
+
+input::placeholder {
+    color: lightgray;
+    font-size: large;
+    opacity: 100%;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    width: 40vh;
+}
+
+.profilePic {
+    border-radius: 0 50% 50% 0;
+    box-shadow: rgba(122, 9, 238, 1) 0px 5px 15px;
+}
+
+.profile-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.user {
+    color: blueviolet;
+    display: flex;
+    padding-left: 1em;
+}
+
+.real {
+    font-weight: bolder;
+}
+
+.bio {
+    color: fuchsia;
+    display: flex;
+    padding-left: 1em;
+}
+
+.center-part {
+    width: 50vw;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .timeline {
-    /* margin-top: 2em; */
     overflow-y: scroll;
 }
 
-.new-post {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1em;
-    border-radius: 0.5em;
-    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
-    opacity: 100%;
-
-}
-
-.newPost-btn {
-    width: 25vw;
-    padding: 0.5em;
-    margin: 0.5em 0.5em 0.25em 0.5em;
-    border-radius: 0.5em;
+.btn-create {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
     cursor: pointer;
-    color: gainsboro;
-    /* background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%); */
+    color: greenyellow;
+    background-color: black;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 
+.my-posts,
 .cardGroup {
     display: flex;
     flex-direction: column-reverse;
-    align-items: center;
+    gap: 1em;
+    max-height: 65vh;
+    padding-top: 1em;
+    overflow: scroll;
 }
 
-.my-posts {
-    max-height: 70vh;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    /* border: 0.02em solid #98eed1;
-    background-color: #98eed13a;
-    border-radius: 0.5em; */
-    margin: 0.5em 0 0.5em 0;
-    color: gainsboro;
-    overflow-y: scroll;
-}
-
-.left-part,
-.right-part {
-    width: 25vw;
-    min-height: 78vh;
-    /* background-color: gray; */
-    border-radius: 0.5em;
-    margin: 1em;
+.down-line-2 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.textarea-placehold {
-    overflow-y: hidden;
-    min-width: 42vw;
-    height: 5em;
-    padding: 1em;
-
+.my-post {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
+}
 
-    background-color: #98eed1;
-    border-radius: 0.5em;
-
-    border: 0.02em solid blueviolet;
-
+.plus {
+    color: fuchsia;
+    font-weight: bolder;
+    font-size: larger;
 }

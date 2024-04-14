@@ -22,6 +22,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: rgba(122, 9, 238, 1) 0px 5px 15px;
 }
 
 .thead,
@@ -58,6 +59,7 @@
 .icon {
     color: blueviolet;
     cursor: pointer;
+
 }
 
 .btns {

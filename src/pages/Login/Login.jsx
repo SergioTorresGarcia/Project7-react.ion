@@ -78,7 +78,7 @@ export const Login = () => {
 
         <div className="login-design">
             {msg === "" ? (
-                <div className="behind-btns">
+                <div className="behind-btns smaller">
                     <div className="error">{msgError}</div>
                     <label className="white-color">Your e-mail:</label>
                     <CInput

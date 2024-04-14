@@ -5,7 +5,7 @@
     background: rgb(122, 9, 238);
     background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
 
-
+    box-shadow: rgba(122, 9, 238, 1) 0px 5px 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -23,10 +23,14 @@
 
 .search-bar {
     height: 3vh;
+    width: 20vw;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0.5em;
+    border: none;
+    border-radius: 2em 2em 2em 2em;
+    box-shadow: rgba(50, 50, 93, 0.75) 0px 0.3em 0.6em -2px inset, rgba(0, 0, 0, 0.73) 0px 0.2em 0.4em -2px inset;
 
 }
 
@@ -36,6 +40,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 2em 2em 2em 2em;
+    box-shadow: rgba(0, 0, 0, 0.581) 0px 5px 5px;
 }
 
 .navigator-design {

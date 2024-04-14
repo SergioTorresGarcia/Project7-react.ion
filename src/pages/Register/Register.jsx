@@ -76,11 +76,11 @@ export const Register = () => {
         <div className="register-design">
             {/* <pre>{JSON.stringify(user, null, 2)}</pre> HELP DURING DEV - preview of the body */}
             {msg === "" ? (
-                <div className="behind-btns">
+                <div className="behind-btns smaller">
                     <div className="error">{msgError}</div>
-                    <label className="white-color">Username:</label>
+                    <label className="white-color ">Username:</label>
                     <CInput
-                        className={`input-design ${userError.usernameError !== "" ? "input-design-error" : ""
+                        className={`input-design  ${userError.usernameError !== "" ? "input-design-error" : ""
                             }`}
                         type="text"
                         placeholder="Choose your username"
