@@ -12,7 +12,7 @@ const CCard = ({ className, content, follow, username, likesCount, emitFunction,
                     {/* <p>{userId.slice(-3)}</p> */}
                 </div>
                 <div className='down-line'>
-                    <span className='corner-follow' onClick={emitfunction2}>{follow}</span>
+                    <span className='corner-follow plus' onClick={emitfunction2}>{follow}</span>
                     <span className="middle-author">{username}</span>
                     <span className='corner-likes ' onClick={emitFunction}>{likesCount}</span>
                 </div>

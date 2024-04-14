@@ -131,20 +131,20 @@ export const Home = () => {
                     'Authorization': `Bearer ${tokenStorage}`
                 }
             });
-            console.log("id", _id);
+            console.log(111, "id", _id);
+            console.log(222, "response", response);
 
             if (!response.ok) {
                 throw new Error('Failed to follow/unfollow user');
             }
 
             const data = await response.json();
-            console.log(data);
-            // setPosts(prevPosts => prevPosts.map(post => post._id === _id ? { ...post, likesCount: data.data.length } : post))
-            // setOwnPosts(prevOwnPosts => prevOwnPosts.map(ownPost => ownPost._id === _id ? { ...ownPost, likesCount: data.data.length } : ownPost))
+            console.log(333, "data", data);
         } catch (error) {
             console.error('Error toggling follow/unfollow:', error);
         }
     };
+
 
     const handleCreatePost = async () => {
         try {
@@ -249,11 +249,11 @@ export const Home = () => {
                                             // }
                                             likesCount={"💜 " + (item.likesCount || 0) + " likes"}
 
-                                            follow={item.userId?.following.includes(item.userId?.username) ? <span><a href="#">❌ unfollow</a></span> : <span> <a className="plus" href="#">+ follow</a></span>}
+                                            follow={item.userId?.following.includes(item.userId?.username) ? <span>❌ unfollow</span> : <span>+ follow</span>}
 
 
                                             emitFunction={() => likeUnlike(item._id)}
-                                            emitFunction2={() => followUnfollow(item._id)}
+                                            emitfunction2={() => followUnfollow(item._id)}
                                             onClick={() => seeDetails(item._id)}
                                         // imageUrl={item.imageUrl} // {`https://picsum.photos/${item._id.slice(-3)}` || ""}
                                         />

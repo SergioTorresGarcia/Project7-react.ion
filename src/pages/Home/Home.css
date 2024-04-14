@@ -171,8 +171,9 @@ input::placeholder {
 
 .plus {
     color: fuchsia;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: larger;
+    cursor: pointer;
 }
 
 .fol {
