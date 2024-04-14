@@ -202,8 +202,10 @@ export const Admin = () => {
                                     <td className="box width-2">{rowNumbers1[index]}</td>
                                     <td className="box width-5">{user._id.slice(-3)}</td>
                                     <td className="box width-20">{user.username}</td>
-                                    <td className="box width-10">{user.following != "" ? user.following : "none"}</td>
-                                    <td className="box width-10">{user.followedBy != "" ? user.followedBy : "none"}</td>
+                                    <td className="box width-10">{user.following != "" ? user.following.map(name => <p>{name}</p>
+                                    ) : "none"}</td>
+                                    <td className="box width-10">{user.followedBy != "" ? user.followedBy.map(name => <p>{name}</p>
+                                    ) : "none"}</td>
                                     <td className="box width-20">{user.email}</td>
                                     <td className="box width-10">{dayjs(user.createdAt).format("YYYY-MM-DD")}</td>
                                     <td className="width-5 btns">
@@ -246,15 +248,6 @@ export const Admin = () => {
                                     <td className="box width-5">{post.userId?._id.slice(-3)}</td>
                                     <td className="box width-10">{post.userId?.username}</td>
                                     <td className="box width-50">{post.content}
-                                        {/* <CInput
-                                            className="box width-50"
-                                            type="textArea"
-                                            placeholder=""
-                                            name="content"
-                                            disabled="disabled"
-                                            value={post.content}
-                                            onChange={(event) => changeEmit(event)}
-                                        /> */}
                                     </td>
                                     {/* mapping likes we display them one under another in the admin table */}
                                     <td className="box width-15">{post.likes != "" ? post.likes.map(name => <p>{name}</p>

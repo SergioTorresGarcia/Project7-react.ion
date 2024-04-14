@@ -43,15 +43,19 @@ export const Home = () => {
 
     // fetching info
     useEffect(() => {
-        fetchUser();
-        fetchPosts();
-        setOwnPosts(newPostContent)
+        const fetchData = async () => {
+            try {
+                await fetchUser();
+                await fetchPosts();
+            } catch (error) {
+                setError('Failed to fetch user or posts data');
+            }
+        };
 
+        fetchData();
+        // setOwnPosts(newPostContent)
     }, []);
-    useEffect(() => {
 
-
-    }, [posts])
 
     //getting user info
     const fetchUser = async () => {
@@ -122,6 +126,14 @@ export const Home = () => {
         }
     };
 
+    const handleLikeUnlike = async (postId) => {
+        try {
+            await likeUnlike(postId);
+        } catch (error) {
+            setError('Failed to like/unlike post');
+        }
+    };
+
     const followUnfollow = async (_id) => {
         try {
             const response = await fetch(`http://localhost:4001/api/users/${_id}/follow`, {
@@ -131,17 +143,23 @@ export const Home = () => {
                     'Authorization': `Bearer ${tokenStorage}`
                 }
             });
-            console.log(111, "id", _id);
-            console.log(222, "response", response);
 
             if (!response.ok) {
                 throw new Error('Failed to follow/unfollow user');
             }
-
             const data = await response.json();
-            console.log(333, "data", data);
+            return data;
         } catch (error) {
             console.error('Error toggling follow/unfollow:', error);
+            throw error;
+        }
+    };
+
+    const handleFollowUnfollow = async (userId) => {
+        try {
+            await followUnfollow(userId);
+        } catch (error) {
+            setError('Failed to follow/unfollow user');
         }
     };
 
@@ -252,8 +270,8 @@ export const Home = () => {
                                             follow={item.userId?.following.includes(item.userId?.username) ? <span>❌ unfollow</span> : <span>+ follow</span>}
 
 
-                                            emitFunction={() => likeUnlike(item._id)}
-                                            emitfunction2={() => followUnfollow(item._id)}
+                                            emitFunction={() => handleLikeUnlike(item._id)}
+                                            emitfunction2={() => handleFollowUnfollow(item._id)}
                                             onClick={() => seeDetails(item._id)}
                                         // imageUrl={item.imageUrl} // {`https://picsum.photos/${item._id.slice(-3)}` || ""}
                                         />
