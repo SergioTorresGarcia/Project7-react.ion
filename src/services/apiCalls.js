@@ -54,7 +54,6 @@ export const LoginUser = async (credenciales) => {
     }
 };
 
-
 // profile
 export const GetProfile = async (token) => {
     const options = {
@@ -103,7 +102,6 @@ export const UpdateProfile = async (token, user) => {
         throw new Error('Update profile failed: ' + error.message);
     }
 };
-
 
 // admin > users
 export const GetUsers = async (token) => {
@@ -208,37 +206,28 @@ export const GetAllPosts = async (token) => {
 };
 
 export const CreatePost = async (token, content) => {
-    // console.log("newPost", newPost);
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        },
-        body: content
-
-    }
-    console.log(content.content);
-    // console.log("content", content.target.value);
     try {
-        const response = await fetch(`${root}posts`, options);
-        console.log(response);
+        const response = await fetch(`${root}posts`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ content })
+        });
+
         if (!response.ok) {
-            console.log(options);
-            throw new Error('Failed to create post: ' + response.statusText);
+            throw new Error('Failed to create post');
         }
 
         const data = await response.json();
-        console.log("data", data);
-        if (!data.success) {
-            throw new Error('Failed to create post: ' + data.message);
-        }
         return data;
-
     } catch (error) {
-        throw new Error('Create post failed: ' + error.message);
+        throw new Error('Failed to create post: ' + error.message);
     }
 }
+
+
 
 export const DeletePost = async (token, x) => {
     const options = {
@@ -342,7 +331,6 @@ export const GetPostById = async (token, _id) => {
         throw new Error('Get posts failed: ' + error.message);
     }
 };
-
 
 //delete button in admin view
 

@@ -174,3 +174,12 @@ input::placeholder {
     font-weight: bolder;
     font-size: larger;
 }
+
+.fol {
+    font-size: xx-small;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
