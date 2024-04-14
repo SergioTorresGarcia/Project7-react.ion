@@ -1,12 +1,14 @@
 .card-design {
 
-    width: 45vw;
+    width: 40em;
     height: auto;
     border: 0.05em solid blueviolet;
-    border-radius: 0.5em;
-    background-color: #98eed1;
+    /* border-radius: 50% 50% 50% 50%; */
+    border-radius: 10em 0 0 10em;
+    background-color: #98eed124;
+    color: gainsboro;
     background: (90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
-    margin: 0.5em 0 0.5em 0;
+    padding: 0.5em 1em 0.5em 3em;
 }
 
 .card-design img {

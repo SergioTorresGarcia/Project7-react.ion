@@ -27,7 +27,7 @@ export const Home = () => {
     const [loadedData, setLoadedData] = useState(false);
     const [tokenStorage, setTokenStorage] = useState(rdxUser.credentials.token);
 
-    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState([]);
     const [posts, setPosts] = useState([]);
     const [ownPosts, setOwnPosts] = useState([]);
 
@@ -38,7 +38,7 @@ export const Home = () => {
         // likes: [],
         // likesCount: 0
     });
-
+    console.log(rdxUser);
 
     useEffect(() => {
         if (!tokenStorage) {
@@ -48,9 +48,32 @@ export const Home = () => {
 
     // fetching info
     useEffect(() => {
-        // fetchUsers();
+        fetchUser();
         fetchPosts();
     }, []);
+
+    //getting user info
+    const fetchUser = async () => {
+        try {
+            if (!tokenStorage) {
+                throw new Error("Token is not available");
+            }
+            const response = await fetch("http://localhost:4001/api/users/profile", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenStorage}`
+                }
+            });
+            const profile = await response.json();
+            setUser(profile.data)
+            console.log(user)
+
+        } catch (error) {
+            throw new Error('Get posts failed: ' + error.message);
+        }
+    };
+
 
     // geting posts
     const fetchPosts = async () => {
@@ -105,24 +128,14 @@ export const Home = () => {
 
             {rdxUser?.credentials?.token ? (
                 <div className="home-design">
-                    {/* TO BE DONE */}
-                    <div className="left-part">
-                        <span>user's data:</span>
-                        <span>- followers list</span>
-                        <span>- following list</span>
-                        <span>- number of posts</span>
+                    {/* add a post function on top: either textarea or input */}
+                    <div className="new-post">
 
-                    </div>
+                        {/* TBD - create post */}
+                        <div className="newPost-btn">
+                            {/* <div className="textarea-placehold">{`What do you wanna share, ${rdxUser.credentials.user.username}?`}</div> */}
 
-                    {/* ALL POSTS - MISSING 'CREATE POST' and 'DETAIL' and pictures? */}
-                    <div className="center-part">
-                        {/* add a post function on top: either textarea or input */}
-                        <div className="new-post">
-                            <div className="textarea-placehold">{`What do you wanna share, ${rdxUser.credentials.user.username}?`}</div>
-
-                            {/* TBD - create post */}
-                            <span className="newPost-btn">
-                                {/* <CTextarea
+                            {/* <CTextarea
                                     type="text"
                                     name="content"
                                     value={newPost.content}
@@ -130,70 +143,81 @@ export const Home = () => {
                                     // onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
                                     className="textareaDesign"
                                 /> */}
-                                {/* <span><input
-                                    placeholder="what do you wanna share?"
-                                    className="btn1"
-                                    type="text"
-                                    name="content"
-                                    value={newPost.content}
-                                    onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
-                                /></span> */}
-
-                                <div> {/* onClick={(e) => handleCreatePost(e)} */}
-                                    CREATE NEW POST
-                                </div>
-                            </span>
+                            <input
+                                placeholder={`What do you wanna share, ${rdxUser.credentials.user.username}?`}
+                                className="new-post no-border"
+                                type="text"
+                                name="content"
+                            // value={newPost.content}
+                            // onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
+                            />
+                        </div>
+                        <div className="btn-create"> {/* onClick={(e) => handleCreatePost(e)} */}
+                            PUBLISH
                         </div>
 
-                        {/* timeline (all posts - mapping cards) */}
-                        <div className="timeline">
-                            <div className="white-color"> * Your timeline * </div>
-                            {/* <div>all posts from all users</div>
-                                <div>extra detail (modal/popup??)</div>
-                                <div>like/unlike buttons</div> */}
+                    </div>
+                    <div className="underNewPost">
+                        {/* <div className="left-part"> */}
+                        <div className="profile-box">
+                            <div className="profile">
+                                <div className="user"><span className="real">{user?.username}&nbsp;&nbsp;</span>|&nbsp;&nbsp;{user?.profile?.name}</div>
+                                <div className="bio" >"{user?.profile?.bio}"</div>
+                                <br />
+                                <img className="profilePic" src={`https://picsum.photos/id/1/300/300`} alt="profile" />
+                                <br />
 
-                            <div className="cardGroup">
+                                <div className="bio" >You follow: {user.following}</div>
+                                <div className="bio" >Followers: {user.followedBy}</div>
+                                <br />
+                            </div>
+                        </div>
+                        {/* </div> */}
 
-                                {posts.map((item) => (
+                        {/* ALL POSTS - MISSING 'CREATE POST' and 'DETAIL' and pictures? */}
+                        <div className="center-part">
+                            {/* timeline (all posts - mapping cards) */}
+                            <div className="timeline">
+                                <div className="cardGroup">
+                                    {posts.map((item) => (
+                                        < CCard
+                                            key={item._id}
+                                            _id={item._id}
+                                            className="card-design"
+                                            username={`-- ${item.userId?.username} --`}
+                                            content={item.content || "null"}
+                                            likesCount={"💜 " + (item.likesCount || 0) + " likes"}  //♥️  🤍
+                                            follow={item.userId?.following.includes(item.userId.username) ? <span><a href="#">❌</a> unfollow</span> : <span> <a className="plus" href="#">+</a> follow</span>}
+                                            // emitFunction={() => like(item._id)}
+                                            emitFunction={() => likeUnlike(item._id)}
+                                            onClick={() => seeDetails(item._id)}
+                                        // imageUrl={item.imageUrl} // {`https://picsum.photos/${item._id.slice(-3)}` || ""}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
 
-                                    < CCard
+                        {/* OWN POSTS - MISSING 'DETAIL' and pictures? */}
+                        <div className="right-part">
+                            <div className="white-color newPost-btn"> * {`You have published ${ownPosts.length} posts`} * </div>
+
+                            <div className="my-posts">
+                                {ownPosts.map((item) => (
+                                    <CCard
                                         key={item._id}
                                         _id={item._id}
-                                        className="card-design"
-                                        username={`-- ${item.userId?.username} --`}
-                                        content={item.content || "null"}
-                                        likesCount={"💜 " + (item.likesCount || 0) + " likes"}  //♥️  🤍
-                                        follow={item.userId?.following.includes(item.userId.username) ? <span><a href="#">❌</a> unfollow</span> : <span> <a href="#">➕</a> follow</span>}
-                                        // emitFunction={() => like(item._id)}
-                                        emitFunction={() => likeUnlike(item._id)}
+                                        className="card-design-right small-card"
+                                        content={item.content}
+                                        likesCount={(item.likesCount || 0) + " 💜"}
                                         onClick={() => seeDetails(item._id)}
 
-                                    // imageUrl={item.imageUrl} // {`https://picsum.photos/${item._id.slice(-3)}` || ""}
+                                    // imageUrl={`https://picsum.photos/${item._id.slice(-3)}`
+                                    //     ? `https://picsum.photos/${item._id.slice(-3)}`
+                                    //     : null}
                                     />
                                 ))}
                             </div>
-                        </div>
-                    </div>
-
-                    {/* OWN POSTS - MISSING 'DETAIL' and pictures? */}
-                    <div className="right-part">
-                        <div className="white-color newPost-btn"> * {`You have published ${ownPosts.length} posts`} * </div>
-
-                        <div className="my-posts">
-                            {ownPosts.map((item) => (
-                                <CCard
-                                    key={item._id}
-                                    _id={item._id}
-                                    className="card-design-right small-card"
-                                    content={item.content}
-                                    likesCount={(item.likesCount || 0) + " 💜"}
-                                    onClick={() => seeDetails(item._id)}
-
-                                // imageUrl={`https://picsum.photos/${item._id.slice(-3)}`
-                                //     ? `https://picsum.photos/${item._id.slice(-3)}`
-                                //     : null}
-                                />
-                            ))}
                         </div>
                     </div>
                 </div>

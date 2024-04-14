@@ -4,20 +4,92 @@
 
     background-color: black;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
+    gap: 1em;
+    margin-top: 1em;
 }
 
 .gif {
     height: 75vh;
 }
 
+
+.new-post {
+    caret-color: fuchsia;
+
+    width: 60em;
+    min-height: 3em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.25em 0 1em;
+    border-radius: 0 10em 10em 0;
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    opacity: 50%;
+}
+
+.new-post-btn,
+.btn-create {
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.underNewPost {
+    display: flex;
+    flex-direction: row;
+}
+
+input {
+    color: antiquewhite;
+}
+
+input::placeholder {
+
+    color: white;
+    font-size: large;
+    opacity: 100%;
+
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    width: 40vh;
+}
+
+.profilePic {
+    border-radius: 0 50% 50% 0;
+}
+
+.profile-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.user {
+    color: blueviolet;
+    display: flex;
+    padding-left: 1em;
+}
+
+.real {
+
+    font-weight: bolder;
+}
+
+.bio {
+    color: fuchsia;
+    display: flex;
+    padding-left: 1em;
+}
+
 .center-part {
-    /* width: 50vw; */
+    width: 50vw;
     max-height: 80vh;
-    /* background-color: gainsboro; */
-    /* margin: 1em; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -27,40 +99,47 @@
 .timeline {
     /* margin-top: 2em; */
     overflow-y: scroll;
-}
-
-.new-post {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1em;
-    border-radius: 0.5em;
-    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
-    opacity: 100%;
 
 }
 
-.newPost-btn {
-    width: 25vw;
-    padding: 0.5em;
-    margin: 0.5em 0.5em 0.25em 0.5em;
-    border-radius: 0.5em;
+
+
+.extarea-placehold {
+    width: 90em;
+    height: 3em;
+}
+
+.btn-create {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
     cursor: pointer;
-    color: gainsboro;
+    color: greenyellow;
+    background-color: black;
     /* background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%); */
     display: flex;
     justify-content: center;
+    align-items: center;
+    opacity: 100%;
 }
 
 
 .cardGroup {
     display: flex;
     flex-direction: column-reverse;
-    align-items: center;
+    gap: 1em;
+    max-height: 65vh;
+    padding-top: 1em;
+    overflow: scroll;
 }
 
-.my-posts {
+.plus {
+    color: fuchsia;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+my-posts {
     max-height: 70vh;
     display: flex;
     flex-direction: column-reverse;
@@ -73,8 +152,8 @@
     overflow-y: scroll;
 }
 
-.left-part,
-.right-part {
+left-part,
+right-part {
     width: 25vw;
     min-height: 78vh;
     /* background-color: gray; */
@@ -86,7 +165,7 @@
     align-items: flex-start;
 }
 
-.textarea-placehold {
+textarea-placehold {
     overflow-y: hidden;
     min-width: 42vw;
     height: 5em;
@@ -100,5 +179,24 @@
     border-radius: 0.5em;
 
     border: 0.02em solid blueviolet;
+
+}
+
+/* left part (USER) */
+
+profile-box {
+
+    width: 20vw;
+    /* margin-right: 1em; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+
+    /* background-color: #98eed139; */
+    background: linear-gradient(90deg, rgba(122, 9, 238, 1) 0%, rgb(183, 0, 255) 100%);
 
 }

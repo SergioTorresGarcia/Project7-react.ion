@@ -13,6 +13,10 @@
     color: whitesmoke;
 }
 
+.no-border {
+    border: none;
+}
+
 .input-design-error {
     color: rgb(255, 51, 0)
 }
