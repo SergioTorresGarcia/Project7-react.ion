@@ -16,16 +16,20 @@
 }
 
 .pagination li:hover {
-    background-color: blueviolet;
+    background-color: fuchsia;
     color: gainsboro;
+    box-shadow: rgb(127, 238, 9, 0.25) 0 0 10px 10px;
 }
 
-
+.icon:hover {
+    box-shadow: rgb(127, 238, 9, 0.25) 0 0 10px 10px;
+}
 
 .pagination .active {
-    border: 0.01 solid teal;
+    border: 0.01 solid rgb(127, 238, 9);
     background-color: pink;
     color: black;
+
 }
 
 .pagination li a {
@@ -38,6 +42,7 @@
     transition: background-color 0.3s ease;
 }
 
+
 .pagination li.active a {
     background-color: pink;
     color: gainsboro;
@@ -46,4 +51,5 @@
 .pagination li a:hover {
     background-color: gray;
     color: gainsboro;
+
 }

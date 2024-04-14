@@ -59,7 +59,7 @@ export const Header = (() => {
                         </div>
                         {/* SEARCH-BAR */}
                         < CInput
-
+                            className="search-bar"
                             type="text"
                             name="criteria"
                             value={criteria || ""}

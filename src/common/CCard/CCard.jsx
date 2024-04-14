@@ -14,7 +14,7 @@ const CCard = ({ className, content, follow, username, likesCount, emitFunction,
                 <div className='down-line'>
                     <span className='corner-follow'>{follow}</span>
                     <span className="middle-author">{username}</span>
-                    <span className='corner-likes' onClick={emitFunction}>{likesCount}</span>
+                    <span className='corner-likes ' onClick={emitFunction}>{likesCount}</span>
                 </div>
             </div>
         </div >

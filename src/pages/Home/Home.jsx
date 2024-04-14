@@ -124,7 +124,6 @@ export const Home = () => {
 
     return (
         <div className="home-design">
-            {/* <img className="gif" src="src/img/REACT.ION.gif" alt="gif logo" /> */}
 
             {rdxUser?.credentials?.token ? (
                 <div className="home-design">
@@ -145,7 +144,7 @@ export const Home = () => {
                                 /> */}
                             <input
                                 placeholder={`What do you wanna share, ${rdxUser.credentials.user.username}?`}
-                                className="new-post no-border"
+                                className="new-post-input"
                                 type="text"
                                 name="content"
                             // value={newPost.content}
@@ -200,31 +199,32 @@ export const Home = () => {
 
                         {/* OWN POSTS - MISSING 'DETAIL' and pictures? */}
                         <div className="right-part">
-                            <div className="white-color newPost-btn"> * {`You have published ${ownPosts.length} posts`} * </div>
+                            {/* <div className="white-color newPost-btn"> * {`You have published ${ownPosts.length} posts`} * </div> */}
 
                             <div className="my-posts">
-                                {ownPosts.map((item) => (
-                                    <CCard
-                                        key={item._id}
-                                        _id={item._id}
-                                        className="card-design-right small-card"
-                                        content={item.content}
-                                        likesCount={(item.likesCount || 0) + " 💜"}
-                                        onClick={() => seeDetails(item._id)}
+                                {ownPosts.length > 0 ?
+                                    ownPosts.map((item) => (
+                                        <CCard
+                                            key={item._id}
+                                            _id={item._id}
+                                            className="card-design-2"
+                                            content={item.content}
+                                            likesCount={(item.likesCount || 0) + " 💜"}
+                                            onClick={() => seeDetails(item._id)}
 
-                                    // imageUrl={`https://picsum.photos/${item._id.slice(-3)}`
-                                    //     ? `https://picsum.photos/${item._id.slice(-3)}`
-                                    //     : null}
-                                    />
-                                ))}
+                                        // imageUrl={`https://picsum.photos/${item._id.slice(-3)}`
+                                        //     ? `https://picsum.photos/${item._id.slice(-3)}`
+                                        //     : null}
+                                        />
+                                    )) : <div className="no-posts">YOU <br /> HAVEN'T <br /> PUBLISHED <br /> ANYTHING <br /> YET</div>}
                             </div>
                         </div>
                     </div>
                 </div>
             ) : (
                 // WHEN YOU ARE NOT LOGGED IN, BIG GIF IS SHOWING
-                <div>
-                    <img className="gif" src="src/img/REACT.ION.gif" alt="gif logo" />
+                <div className="gif-box">
+                    <img className="gif" src="src/img/REACT.ION (1).gif" alt="gif logo" />
                 </div>
             )}
         </div>

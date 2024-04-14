@@ -1,26 +1,25 @@
 .card-design {
-
     width: 40em;
     height: auto;
     border: 0.05em solid blueviolet;
-    /* border-radius: 50% 50% 50% 50%; */
     border-radius: 10em 0 0 10em;
     background-color: #98eed124;
     color: gainsboro;
     background: (90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
     padding: 0.5em 1em 0.5em 3em;
+    box-shadow: rgb(39, 150, 2, 0.75) 0px 5px 15px;
 }
 
-.card-design img {
-    width: 100px;
-    margin-top: 0.5em;
+.card-design-2 {
+    width: 25em;
+    height: auto;
+    border: 0.05em solid blueviolet;
+    border-radius: 0 10em 10em 0;
+    background-color: #98eed124;
+    color: gainsboro;
+    background: (90deg, rgba(122, 9, 238, 1) 0%, rgba(250, 0, 255, 1) 100%);
+    box-shadow: rgb(39, 150, 2, 0.75) 0px 5px 15px;
 }
-
-.card-design-right img {
-    width: 200px;
-    margin-top: 1em;
-}
-
 
 .card-content {
     padding: 0.25em 0.5em 0.25em 0.5em;
@@ -49,20 +48,21 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
+    margin-left: 2em;
 }
 
 .corner-likes {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    /* padding-right: 1em; */
     cursor: pointer;
     z-index: 800;
+    margin-right: 3em;
 }
+
 
 .middle-author {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    /* padding-left: 1em; */
 }
