@@ -115,6 +115,7 @@ export const GetUsers = async (token) => {
 
     try {
         const response = await fetch(`${root}users`, options);
+        console.log(response);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

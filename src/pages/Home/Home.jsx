@@ -13,13 +13,6 @@ import { CTextarea } from "../../common/CTextarea/CTextarea";
 import { likePost } from "../../services/apiCalls";
 
 export const Home = () => {
-    //Instancia de Redux en modo lectura para home
-    // const rdxSearch = useSelector(searchData);
-    // useEffect(() => {
-    //     console.log(rdxSearch);
-    // }, [rdxSearch]);
-    ///
-
     //Instancia de Redux para escritura y lectura (see and edit profile)
     const dispatch = useDispatch();
     const rdxUser = useSelector(userData);
@@ -31,9 +24,7 @@ export const Home = () => {
     const [posts, setPosts] = useState([]);
     const [ownPosts, setOwnPosts] = useState([]);
 
-    const [dataDetails, setDataDetails] = useState([])
     const [newPostContent, setNewPostContent] = useState("");
-
 
     useEffect(() => {
         if (!tokenStorage) {
@@ -53,7 +44,7 @@ export const Home = () => {
         };
 
         fetchData();
-        // setOwnPosts(newPostContent)
+        setOwnPosts(newPostContent)
     }, []);
 
 
@@ -116,7 +107,7 @@ export const Home = () => {
             if (!response.ok) {
                 throw new Error('Failed to like/unlike post');
             }
-
+ 
             const data = await response.json();
             console.log(data);
             setPosts(prevPosts => prevPosts.map(post => post._id === _id ? { ...post, likesCount: data.data.length } : post))
@@ -206,20 +197,8 @@ export const Home = () => {
                                 placeholder={`What do you wanna share, ${rdxUser.credentials.user.username}?`}
                                 className="new-post"
                             />
-                            {/* <input
-                                placeholder={`What do you wanna share, ${rdxUser.credentials.user.username}?`}
-                                className="new-post-input"
-                                type="text"
-                                name="content"
-                            // value={newPost.content}
-                            // onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
-                            /> */}
                         </div>
                         <div className="btn-create" onClick={handleCreatePost}>PUBLISH</div>
-
-                        {/* <div className="btn-create">
-                            PUBLISH
-                        </div> */}
 
                     </div>
                     <div className="underNewPost">

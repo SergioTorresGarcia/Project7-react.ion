@@ -76,6 +76,7 @@ export const Admin = () => {
                 throw new Error("Token is not available");
             }
             const usersData = await GetUsers(tokenStorage);
+            console.log(usersData);
             setLoadedData(true)
             setUsers(usersData.data)
         } catch (error) {
@@ -207,7 +208,7 @@ export const Admin = () => {
                                     <td className="box width-10">{user.followedBy != "" ? user.followedBy.map(name => <p>{name}</p>
                                     ) : "none"}</td>
                                     <td className="box width-20">{user.email}</td>
-                                    <td className="box width-10">{dayjs(user.createdAt).format("YYYY-MM-DD")}</td>
+                                    {/* <td className="box width-10">{dayjs(user.createdAt).format("YYYY-MM-DD")}</td> */}
                                     <td className="width-5 btns">
                                         <FaEdit className="icon" onClick={() => editUser(user._id)} />
                                         <FaTrash className="icon" onClick={() => deleteUser(user._id)} />
